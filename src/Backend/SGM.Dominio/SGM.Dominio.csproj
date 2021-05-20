@@ -8,4 +8,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="5.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SGM.Utils\SGM.Utils.csproj" />
+  </ItemGroup>
+
 </Project>

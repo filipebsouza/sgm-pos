@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using SGM.Utils.IntExtensions;
 
 namespace SGM.Dominio.Entidades
 {
     public class Usuario
     {
-        public static readonly string MensagemEmailInvalido = "Email inválido";  
+        public static readonly string MensagemEmailInvalido = "Email inválido";
+        public static readonly string MensagemSenhaInvalida = "Senha inválida";
+        public static readonly string MensagemSenhaDeveTerEntre6E8Caracteres = "Senha deve ter entre 6 e 8 caracteres";
+        public static readonly string MensagemPapelInvalido = "Papel de permissão inválido";
 
         public int Id { get; }
         public string Email { get; }
@@ -35,9 +39,15 @@ namespace SGM.Dominio.Entidades
             return hashDaSenha == hashInformado;
         }
 
-        private void ValidaParametros(string email, string senha, PapelDoUsuario[] papeis)
+        private static void ValidaParametros(string email, string senha, PapelDoUsuario[] papeis)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(email)) throw new ArgumentException(MensagemEmailInvalido);
+
+            if (string.IsNullOrWhiteSpace(senha)) throw new ArgumentException(MensagemSenhaInvalida);
+
+            if (senha?.Length.Between(6, 8) is not true) throw new ArgumentException(MensagemSenhaDeveTerEntre6E8Caracteres);
+
+            if (papeis?.Length <= 0) throw new ArgumentException(MensagemPapelInvalido);
         }
 
         private static string GerarHashDaSenha(string senha)
