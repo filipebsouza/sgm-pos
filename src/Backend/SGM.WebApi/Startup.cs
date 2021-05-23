@@ -1,13 +1,10 @@
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using SGM.Infra.Segurancas;
+using SGM.IoC;
 
 namespace SGM.WebApi
 {
@@ -23,31 +20,11 @@ namespace SGM.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
-            services.AddControllers();
+            services.RegistrarDependencias();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "../../Frontend/dist";
-            });
-            services.AddAuthentication(configuration =>
-            {
-                configuration.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                configuration.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-             .AddJwtBearer(configuration =>
-            {
-                configuration.RequireHttpsMetadata = false;
-                configuration.SaveToken = true;
-                configuration.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.ASCII.GetBytes(ServicoDeToken.Segredo)
-                    ),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
             });
         }
 

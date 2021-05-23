@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SGM.Dominio\SGM.Dominio.csproj" />
     <ProjectReference Include="..\SGM.Infra\SGM.Infra.csproj" />
+    <ProjectReference Include="..\SGM.IoC\SGM.IoC.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using SGM.Utils.IntExtensions;
 
 namespace SGM.Dominio.Entidades
@@ -35,8 +34,21 @@ namespace SGM.Dominio.Entidades
 
         public bool SenhaEhValida(string senha)
         {
-            var hashInformado = GerarHashDaSenha(senha);
-            return hashDaSenha == hashInformado;
+            ReadOnlySpan<byte> buffer4;
+            byte[] src = Convert.FromBase64String(hashDaSenha);
+            if ((src.Length != 0x31) || (src[0] != 0))
+            {
+                return false;
+            }
+            byte[] dst = new byte[0x10];
+            Buffer.BlockCopy(src, 1, dst, 0, 0x10);
+            byte[] buffer3 = new byte[0x20];
+            Buffer.BlockCopy(src, 0x11, buffer3, 0, 0x20);
+            using (Rfc2898DeriveBytes bytes = new(senha, dst, 0x3e8))
+            {
+                buffer4 = bytes.GetBytes(0x20).AsSpan();
+            }
+            return buffer3.AsSpan().SequenceEqual(buffer4);
         }
 
         private static void ValidaParametros(string email, string senha, PapelDoUsuario[] papeis)
@@ -52,19 +64,17 @@ namespace SGM.Dominio.Entidades
 
         private static string GerarHashDaSenha(string senha)
         {
-            byte[] salt = new byte[128 / 8];
-            using (var rng = RandomNumberGenerator.Create())
+            byte[] salt;
+            byte[] buffer2;
+            using (Rfc2898DeriveBytes bytes = new(senha, 0x10, 0x3e8))
             {
-                rng.GetBytes(salt);
+                salt = bytes.Salt;
+                buffer2 = bytes.GetBytes(0x20);
             }
-
-            return Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: senha,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA1,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8)
-            );
+            byte[] dst = new byte[0x31];
+            Buffer.BlockCopy(salt, 0, dst, 1, 0x10);
+            Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
+            return Convert.ToBase64String(dst);
         }
     }
 }
