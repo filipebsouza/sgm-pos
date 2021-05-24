@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -25,23 +26,26 @@ namespace SGM.WebApi.Middlewares
             if (endpoint == null)
             {
                 await _next(context);
+                return;
             }
-            else
-            {
-                var ehAnonimo = endpoint?.Metadata.GetMetadata<AllowAnonymousAttribute>();
-                if (ehAnonimo != null)
-                {
-                    await _next(context);
-                }
-                else
-                {
-                    var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                    if (token != null)
-                        attachUserToContext(context, token);
 
-                    await _next(context);
-                }
+            var ehAnonimo = endpoint?.Metadata.GetMetadata<AllowAnonymousAttribute>();
+            if (ehAnonimo != null)
+            {
+                await _next(context);
+                return;
             }
+
+            var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            if (token == null)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                await context.Response.WriteAsync("Acesso não autorizado");
+                return;
+            }
+
+            attachUserToContext(context, token);
+            await _next(context);
         }
 
         private void attachUserToContext(HttpContext context, string token)

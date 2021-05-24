@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGM.Dominio.Entidades;
 using SGM.Infra;
@@ -14,6 +15,7 @@ namespace SGM.WebApi.Controllers
     {
         [HttpPost]
         [Route("login")]
+        [AllowAnonymous]
         public async Task<ActionResult<dynamic>> Login(
             [FromServices] RepositorioDeUsuarios repositorio,
             [FromBody] UsuarioHttpDto dto

@@ -48,8 +48,6 @@ namespace SGM.WebApi
                .AllowAnyMethod()
                .AllowAnyHeader());
 
-            app.UseAuthentication();
-            app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -58,6 +56,8 @@ namespace SGM.WebApi
             }
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
