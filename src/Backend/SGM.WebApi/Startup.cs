@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SGM.IoC;
+using SGM.WebApi.Middlewares;
 
 namespace SGM.WebApi
 {
@@ -57,6 +58,7 @@ namespace SGM.WebApi
             }
 
             app.UseRouting();
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

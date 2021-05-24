@@ -24,6 +24,7 @@ namespace SGM.WebApi.Controllers
         }
 
         [HttpGet]
+        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

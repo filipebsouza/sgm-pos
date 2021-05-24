@@ -12,6 +12,7 @@ namespace SGM.IoC.Containers
         {
             services.AddCors();
             services.AddControllers();
+            services.AddAuthorization();
             services.AddAuthentication(configuration =>
             {
                 configuration.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
