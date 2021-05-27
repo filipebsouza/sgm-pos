@@ -42,7 +42,7 @@ namespace SGM.WebApi.Controllers
 
         [HttpGet]
         [Route("testar")]
-        [AuthorizeRoles(PapelDoUsuario.Contribuinte)]
+        [AuthorizeRoles(PapelDoUsuario.Contribuinte, PapelDoUsuario.Servidor)]
         public ActionResult TestarAutenticacao()
         {
             return Ok("DEU CERTO");

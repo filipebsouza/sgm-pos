@@ -7,9 +7,9 @@ namespace SGM.WebApi.Helpers
 {
     public class AuthorizeRolesAttribute : AuthorizeAttribute
     {
-        public AuthorizeRolesAttribute(params PapelDoUsuario[] papeis)
+        public AuthorizeRolesAttribute(params PapelDoUsuario[] papeis) : base()
         {
-            var papeisComoStrings = papeis.Select(papel => Enum.GetName(typeof(PapelDoUsuario), papel));
+            var papeisComoStrings = papeis.Select(papel => papel.ToString().ToLower());
             Roles = string.Join(",", papeisComoStrings);
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,23 +14,24 @@ namespace SGM.IoC.Containers
             services.AddCors();
             services.AddControllers();
             services.AddAuthorization();
-            services.AddAuthentication(configuration =>
-            {
-                configuration.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                configuration.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(configuration =>
             {
-                configuration.RequireHttpsMetadata = false;
-                configuration.SaveToken = true;
+                // configuration.RequireHttpsMetadata = false;
+                // configuration.SaveToken = true;
                 configuration.TokenValidationParameters = new TokenValidationParameters
                 {
+                    ValidateIssuer = true,
+                    ValidIssuer = ServicoDeToken.EmissorDoToken,
+                    ValidateAudience = true,
+                    ValidAudience = ServicoDeToken.AudienciaDoToken,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.ASCII.GetBytes(ServicoDeToken.Segredo)
                     ),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
+                    RequireExpirationTime = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
 
