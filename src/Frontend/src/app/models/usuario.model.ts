@@ -6,4 +6,5 @@ export class Usuario
     email: string;
     senha: string;
     papeis: Papel[];
+    token: string;
 }
