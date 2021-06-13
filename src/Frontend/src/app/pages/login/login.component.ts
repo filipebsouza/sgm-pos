@@ -14,7 +14,7 @@ export class LoginComponent {
     logar() {
         this.usuarioService.logar(this.usuario)
             .subscribe(retorno => {
-                this.usuario = retorno;
+                this.usuario = retorno as Usuario;
             });
     }
 }

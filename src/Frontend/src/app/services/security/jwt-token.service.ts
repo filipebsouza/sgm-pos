@@ -1,6 +1,6 @@
-
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable()
 export class JWTTokenService {
@@ -8,12 +8,12 @@ export class JWTTokenService {
     jwtToken: string;
     decodedToken: { [key: string]: string };
 
-    constructor() {
-    }
+    constructor(private _localStorageService: LocalStorageService) { }
 
     setToken(token: string) {
         if (token) {
             this.jwtToken = token;
+            this._localStorageService.set('TOKEN', token)
         }
     }
 
@@ -25,6 +25,10 @@ export class JWTTokenService {
 
     getDecodeToken() {
         return jwt_decode(this.jwtToken);
+    }
+
+    getToken(): string {
+        return this.jwtToken || this._localStorageService.get('TOKEN');
     }
 
     getUser() {
