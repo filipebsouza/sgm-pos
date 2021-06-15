@@ -8,9 +8,9 @@ import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
     templateUrl: './toast-message.component.html',
 })
 export class ToastMessageComponent {
-    titulo: string;
-    dataEHora: Date;
-    mensagem: string;
+    titulo: string = 'Titulo';
+    dataEHora: Date = new Date();
+    mensagem: string = 'Mensagem';
     observador: Subscription = new Subscription();
 
     constructor(private _toasMessageService: ToastMessageService) { }

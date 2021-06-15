@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
-import { HomeComponent } from './pages/home/home.component';
 import { InterceptorModule } from './interceptors/interceptor.module';
 import { ServiceModule } from './services/service.module';
 import { PageModule } from './pages/page.module';
@@ -14,15 +12,13 @@ import { environment } from 'src/environments/environment';
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
+import { ComponentsModule } from './components/components.module';
 
 registerLocaleData(localeBr, 'pt');
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavMenuComponent,
-    ToastMessageComponent,
-    HomeComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,6 +26,7 @@ registerLocaleData(localeBr, 'pt');
     FormsModule,
     InterceptorModule,
     ServiceModule,
+    ComponentsModule,
     PageModule,
     AppRoutingModule
   ],
