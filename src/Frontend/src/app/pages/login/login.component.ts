@@ -6,7 +6,7 @@ import { UsuarioService } from 'src/app/services/apis/usuario.service';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./longin.component.css']
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
     form: FormGroup;
