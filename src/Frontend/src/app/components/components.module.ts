@@ -1,5 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoaderComponent } from './loader/loader.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { ToastMessageComponent } from './toast-message/toast-message.component';
 
@@ -7,9 +10,16 @@ import { ToastMessageComponent } from './toast-message/toast-message.component';
     declarations: [
         NavMenuComponent,
         ToastMessageComponent,
+        LoaderComponent,
+    ],
+    exports: [
+        NavMenuComponent,
+        ToastMessageComponent,
+        LoaderComponent
     ],
     imports: [
-        NgbModule,
+        CommonModule,
+        RouterModule,
         NgbToastModule
     ]
 })

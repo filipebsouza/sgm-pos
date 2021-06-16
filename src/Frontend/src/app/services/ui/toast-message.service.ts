@@ -6,7 +6,7 @@ import { ToastMessage } from 'src/app/models/toast-message.model';
 export class ToastMessageService {
     public emissorDeMensagens: Subject<ToastMessage> = new Subject();
 
-    public criarMensagem(error: ToastMessage) {
-        this.emissorDeMensagens.next(error);
+    public criarMensagem(toast: ToastMessage) {
+        this.emissorDeMensagens.next(toast);
     }
 }

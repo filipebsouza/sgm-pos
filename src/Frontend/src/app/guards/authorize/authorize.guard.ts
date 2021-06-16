@@ -12,7 +12,7 @@ export class AuthorizeGuard implements CanActivate {
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): boolean {
-        if (this._jwtService.getUser() && !this._jwtService.isTokenExpired()) {
+        if (this._jwtService.getUsuario() && !this._jwtService.tokenEstahExpirado()) {
             return true;
         }
 

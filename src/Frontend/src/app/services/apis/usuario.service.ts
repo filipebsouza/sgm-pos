@@ -15,7 +15,7 @@ export class UsuarioService extends BaseApiService<Usuario> {
     }
 
     logar(usuario: Usuario): Observable<void | Usuario> {
-        return this.http.post<Usuario>(`${this.baseUrl}/${this.recurso}`, usuario)
+        return this.http.post<Usuario>(`${this.baseUrl}/${this.recurso}/login`, usuario)
             .pipe(
                 map(retorno => {
                     console.log(retorno);

@@ -12,13 +12,16 @@ import { environment } from 'src/environments/environment';
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { ComponentsModule } from './components/components.module';
 
 registerLocaleData(localeBr, 'pt');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // ToastMessageComponent,
+    // NavMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,8 +29,8 @@ registerLocaleData(localeBr, 'pt');
     FormsModule,
     InterceptorModule,
     ServiceModule,
-    ComponentsModule,
     PageModule,
+    ComponentsModule,
     AppRoutingModule
   ],
   providers: [

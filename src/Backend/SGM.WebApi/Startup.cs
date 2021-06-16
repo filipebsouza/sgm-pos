@@ -23,10 +23,7 @@ namespace SGM.WebApi
         {
             services.RegistrarDependencias();
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "../../Frontend/dist";
-            });
+            services.AddSpaStaticFiles(configuration => configuration.RootPath = "../../Frontend/dist");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
