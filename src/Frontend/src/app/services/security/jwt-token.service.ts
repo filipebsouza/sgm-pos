@@ -19,13 +19,21 @@ export class JWTTokenService {
             this.jwtToken = token;
             this._localStorageService.set('TOKEN', token);
             this.emissorDeUsuarioLogado.next(this.getUsuario());
+        } else {
+            this.jwtToken = null;
+            this.decodedToken = null;
+            this._localStorageService.remove('TOKEN');
+            this.emissorDeUsuarioLogado.next(null);
         }
     }
 
     decodeToken() {
-        if (this.jwtToken) {
-            this.decodedToken = jwt_decode(this.jwtToken);
+        const token = this._localStorageService.get('TOKEN');
+        if (token) {
+            this.jwtToken = token;
         }
+
+        this.decodedToken = jwt_decode(this.jwtToken);
     }
 
     getDecodeToken() {
@@ -47,8 +55,7 @@ export class JWTTokenService {
 
     getUsuario(): Usuario {
         this.decodeToken();
-        const name = this.decodedToken ? this.decodedToken.displayname : null;
-        if (name) {
+        if (this.decodedToken) {
             return {
                 email: '',
                 papeis: [Papel.Contribuinte],

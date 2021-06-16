@@ -1,4 +1,4 @@
-<div [visibility]="usuario === null || usuario === undefined">
+<div *ngIf="!usuario">
     <form class="form-signin" novalidate [formGroup]="form" (ngSubmit)="logar()">
         <h1 class="h3 mb-3 font-weight-normal">Por favor insira as informações</h1>
         <label for="inputEmail" class="sr-only">E-mail</label>
@@ -10,6 +10,6 @@
         <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
     </form>
 </div>
-<div [hidden]="usuario !== null || usuario !== undefined">
+<div *ngIf="!!usuario">
     <h1>Usuário logado</h1>
 </div>

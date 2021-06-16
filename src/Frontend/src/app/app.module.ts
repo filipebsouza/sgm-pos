@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -9,7 +9,7 @@ import { ServiceModule } from './services/service.module';
 import { PageModule } from './pages/page.module';
 import { AppRoutingModule } from './router/app-routing.module';
 import { environment } from 'src/environments/environment';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -23,10 +23,18 @@ registerLocaleData(localeBr, 'pt');
     // ToastMessageComponent,
     // NavMenuComponent
   ],
+  exports: [
+    ComponentsModule,
+    PageModule,
+    InterceptorModule,
+    ServiceModule,
+  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     InterceptorModule,
     ServiceModule,
     PageModule,

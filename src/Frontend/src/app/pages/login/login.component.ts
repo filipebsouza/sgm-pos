@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
     constructor(private _fb: FormBuilder, private _usuarioService: UsuarioService,
         private _toastMessageService: ToastMessageService, private _jwtService: JWTTokenService
-    ) {
+    ) { 
         this.construirForm();
     }
 
@@ -35,19 +35,18 @@ export class LoginComponent implements OnInit {
         this.usuario = this.form.value;
         this._usuarioService.logar(this.usuario)
             .subscribe(retorno => {
-                this.usuario = retorno as Usuario;
-                this.form.reset({
-                    email: '',
-                    senha: ''
-                });
-                this._toastMessageService.criarMensagem({
-                    titulo: 'Login',
-                    mensagem: 'Usuário logado com sucesso',
-                    dataEHora: new Date()
-                });
-                setTimeout(() => {
-                    location.reload();
-                }, 2000);
-            });
+                if (retorno) {
+                    this.usuario = retorno as Usuario;
+                    this.form.reset({
+                        email: '',
+                        senha: ''
+                    });
+                    this._toastMessageService.criarMensagem({
+                        titulo: 'Login',
+                        mensagem: 'Usuário logado com sucesso',
+                        dataEHora: new Date()
+                    });
+                }
+            }, () => this.usuario = null);
     }
 }

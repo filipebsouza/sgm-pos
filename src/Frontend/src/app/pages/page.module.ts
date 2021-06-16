@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +14,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
         ModulosComponent
     ],
     imports: [
+        CommonModule,
         FormsModule,
         ReactiveFormsModule,
     ]
