@@ -70,6 +70,7 @@ namespace SGM.WebApi
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "../../Frontend";
+                spa.Options.DefaultPage = "../../Frontend/src/index.html";
 
                 if (env.IsDevelopment())
                 {
