@@ -8,9 +8,6 @@ EXPOSE 443
 # Prevent 'Warning: apt-key output should not be parsed (stdout is not a terminal)'
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
-# Copiar arquivos do Frontend
-ADD src/Frontend/ ./Frontend
-
 # Intalando dependências do Frontend
 RUN apt-get update -yq 
 RUN apt-get install curl gnupg -yq 
@@ -19,14 +16,13 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y build-essential
 RUN npm install -g @angular/cli
 
-# Copiar arquivos do Backend e restaurar dependências
-ADD src/Backend/ ./Backend
-COPY src/SGM.sln ./
-RUN dotnet restore
+# Copiar arquivos do projeto e restaurar dependências
+COPY src/ ./
+RUN dotnet restore --no-cache
 
 # Build e Publicação da aplicação
-RUN dotnet build Backend/SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out
-RUN dotnet publish Backend/SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out
+RUN dotnet build SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out
+RUN dotnet publish SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out
 
 #----------------------------------
 
