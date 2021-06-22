@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{2144D124-6568-4A89-B910-324B4EAB2457}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Infra", "SGM.Infra\SGM.Infra.csproj", "{4FFADD6B-4AC7-4FA3-BF57-DA11C616A7C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Infra", "Backend\SGM.Infra\SGM.Infra.csproj", "{4FFADD6B-4AC7-4FA3-BF57-DA11C616A7C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Apresentacao", "SGM.Apresentacao\SGM.Apresentacao.csproj", "{AD842A92-1521-405A-A10E-DB836AA18804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.WebApi", "Backend\SGM.WebApi\SGM.WebApi.csproj", "{AD842A92-1521-405A-A10E-DB836AA18804}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Utils", "SGM.Utils\SGM.Utils.csproj", "{7F7C3638-18BB-47ED-96E0-F683DCC6CD1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Utils", "Backend\SGM.Utils\SGM.Utils.csproj", "{7F7C3638-18BB-47ED-96E0-F683DCC6CD1E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.IoC", "Backend\SGM.IoC\SGM.IoC.csproj", "{940CF88D-388B-4499-8A63-A3B443C67399}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.IoC", "SGM.IoC\SGM.IoC.csproj", "{940CF88D-388B-4499-8A63-A3B443C67399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

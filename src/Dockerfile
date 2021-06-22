@@ -25,8 +25,8 @@ COPY src/SGM.sln ./
 RUN dotnet restore
 
 # Build e Publicação da aplicação
-RUN dotnet build Backend/SGM.WebApi/SGM.WebApi.csproj -c Release -o out
-RUN dotnet publish Backend/SGM.WebApi/SGM.WebApi.csproj -c Release -o out
+RUN dotnet build Backend/SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out
+RUN dotnet publish Backend/SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out
 
 #----------------------------------
 
@@ -36,4 +36,4 @@ WORKDIR /app
 
 COPY --from=build-env /app/out .
 
-ENTRYPOINT ["dotnet", "SGM.WebApi.dll"]
+ENTRYPOINT ["dotnet", "SGM.Apresentacao.dll"]
