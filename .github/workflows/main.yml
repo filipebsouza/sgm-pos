@@ -21,12 +21,12 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-      - name: Login e push da imagem no Azure
       - uses: Azure/docker-login@v1
         with:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+          
       - run: |
           docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
