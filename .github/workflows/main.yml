@@ -16,26 +16,26 @@ jobs:
   build-and-deploy-image:
     runs-on: ubuntu-latest
     steps:
-      - name: Reconstruindo artefato para deploy no registry
       - uses: actions/checkout@v2
+      - name: Reconstruindo artefato para deploy no registry
         
+      - uses: azure/login@v1
       - name: Login via Azure CLI
-        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       
+      - uses: azure/docker-login@v1
       - name: Build e push da imagem
-        uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - run: |
+        run: |
           docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
 
+      - uses: 'azure/aci-deploy@v1'
       - name: Deploy para o Azure Container Instances
-        uses: 'azure/aci-deploy@v1'
         with:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
