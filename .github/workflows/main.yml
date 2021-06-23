@@ -23,22 +23,3 @@ jobs:
       - name: Login via Azure CLI
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
-      - uses: azure/docker-login@v1
-      - name: Build e push da imagem
-        run: |
-          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
-
-      - uses: azure/aci-deploy@v1
-      - name: Deploy para o Azure Container Instances
-        with:
-          resource-group: ${{ secrets.RESOURCE_GROUP }}
-          dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
-          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          name: aci-sgmapp
-          location: 'brazilsouth'
-
