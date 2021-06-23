@@ -17,6 +17,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Pegando a branch do código
+        uses: actions/checkout@main
+    
       - name: Login via Azure CLI
         uses: Azure/login@v1
         with:
