@@ -22,7 +22,7 @@ RUN dotnet restore --no-cache
 
 # Build e Publicação da aplicação
 RUN dotnet build SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out
-RUN dotnet publish SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out
+RUN dotnet publish SGM.Apresentacao/SGM.Apresentacao.csproj -c Release -o out --no-cache
 
 #----------------------------------
 

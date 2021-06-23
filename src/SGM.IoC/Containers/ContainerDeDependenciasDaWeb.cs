@@ -12,13 +12,11 @@ namespace SGM.IoC.Containers
         internal static IServiceCollection RegistrarDependenciasDaWeb(this IServiceCollection services)
         {
             services.AddCors();
-            services.AddControllers();
+            services.AddControllersWithViews();
             services.AddAuthorization();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(configuration =>
             {
-                // configuration.RequireHttpsMetadata = false;
-                // configuration.SaveToken = true;
                 configuration.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
