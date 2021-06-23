@@ -30,7 +30,7 @@ jobs:
           docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sgmapp:${{ github.sha }}
 
-      - uses: 'azure/aci-deploy@v1'
+      - uses: azure/aci-deploy@v1
       - name: Deploy para o Azure Container Instances
         with:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
