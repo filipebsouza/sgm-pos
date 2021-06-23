@@ -16,9 +16,6 @@ jobs:
   build-and-deploy-image:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Reconstruindo artefato para deploy no registry
-        
       - uses: azure/login@v1
       - name: Login via Azure CLI
         with:
