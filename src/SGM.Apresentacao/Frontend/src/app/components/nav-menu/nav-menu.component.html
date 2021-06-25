@@ -1,11 +1,13 @@
 <header>
-  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
     <div class="container">
+
       <a class="navbar-brand" [routerLink]="['/']">SGM</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
         aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
@@ -18,7 +20,20 @@
             <a class="nav-link text-dark" [routerLink]="" (click)="sair()">Sair</a>
           </li>
         </ul>
+
+        <div ngbDropdown class="d-inline-block text-dark">
+          <button class="btn btn-outline-primary text-dark" id="dropdownModulos" ngbDropdownToggle>Módulos</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownModulos">
+            <button ngbDropdownItem>Georreferenciamento</button>
+            <button ngbDropdownItem>Serviços ao cidadão</button>
+            <button ngbDropdownItem>Gestão de projetos</button>
+            <button ngbDropdownItem>BI</button>
+            <button ngbDropdownItem>Integrações</button>
+          </div>
+        </div>
+
       </div>
+
     </div>
   </nav>
 </header>
