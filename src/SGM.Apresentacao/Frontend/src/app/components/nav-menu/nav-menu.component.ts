@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario.model';
 import { JWTTokenService } from 'src/app/services/security/jwt-token.service';
 
@@ -11,7 +12,7 @@ export class NavMenuComponent implements OnInit {
   isExpanded = false;
   usuario: Usuario;
 
-  constructor(private _jwtService: JWTTokenService) { }
+  constructor(private _jwtService: JWTTokenService, private _router: Router) { }
 
   ngOnInit(): void {
     this._jwtService.emissorDeUsuarioLogado.subscribe(usuario => this.usuario = usuario);
@@ -28,8 +29,11 @@ export class NavMenuComponent implements OnInit {
     this.isExpanded = !this.isExpanded;
   }
 
+  irPara(rota: string) {
+    this._router.navigate([rota]);
+  }
+
   sair() {
     this._jwtService.setToken(null);
-    location.reload();
   }
 }

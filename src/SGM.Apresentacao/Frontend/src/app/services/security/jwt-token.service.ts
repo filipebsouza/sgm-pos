@@ -58,14 +58,27 @@ export class JWTTokenService {
     getUsuario(): Usuario {
         this.decodeToken();
         if (this.decodedToken) {
-            return {
-                email: '',
-                papeis: [Papel.Contribuinte],
-                nome: 'Nome qualquer',
+            const usuario: Usuario = {
+                email: this.decodedToken.unique_name,
+                papeis: this._getRoles(),
+                nome: this.decodedToken.nameid,
                 token: this.getToken()
-            }
+            };
+            return usuario;
         }
 
+        return null;
+    }
+
+    private _getRoles(): Papel[] {
+        if (this.decodedToken && this.decodedToken.role) {
+            if (typeof this.decodedToken.role === 'string') {
+                return [Papel[this.decodedToken.role.toUpperCase()]];
+            } else if (typeof this.decodedToken.role === 'object') {
+                const roles: string[] = this.decodedToken.role;
+                return roles.map(role => Papel[role.toUpperCase()]);
+            }
+        }
         return null;
     }
 

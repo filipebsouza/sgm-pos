@@ -8,12 +8,14 @@ namespace SGM.Dominio.Entidades
 {
     public class Usuario
     {
+        public static readonly string MensagemNomeInvalido = "Nome inválido";
         public static readonly string MensagemEmailInvalido = "Email inválido";
         public static readonly string MensagemSenhaInvalida = "Senha inválida";
         public static readonly string MensagemSenhaDeveTerEntre6E8Caracteres = "Senha deve ter entre 6 e 8 caracteres";
         public static readonly string MensagemPapelInvalido = "Papel de permissão inválido";
 
         public int Id { get; }
+        public string Nome { get; }
         public string Email { get; }
         private string hashDaSenha = "";
         private string Senha
@@ -25,9 +27,10 @@ namespace SGM.Dominio.Entidades
         }
         public IReadOnlyList<PapelDoUsuario> Papeis { get; }
 
-        public Usuario(string email, string senha, params PapelDoUsuario[] papeis)
+        public Usuario(string nome, string email, string senha, params PapelDoUsuario[] papeis)
         {
-            ValidaParametros(email, senha, papeis);
+            ValidaParametros(nome, email, senha, papeis);
+            Nome = nome;
             Email = email;
             Senha = senha;
             Papeis = papeis;
@@ -52,8 +55,10 @@ namespace SGM.Dominio.Entidades
             return buffer3.AsSpan().SequenceEqual(buffer4);
         }
 
-        private static void ValidaParametros(string email, string senha, PapelDoUsuario[] papeis)
+        private static void ValidaParametros(string nome, string email, string senha, PapelDoUsuario[] papeis)
         {
+            if (string.IsNullOrWhiteSpace(nome)) throw new ArgumentException(MensagemNomeInvalido);
+
             if (string.IsNullOrWhiteSpace(email)) throw new ArgumentException(MensagemEmailInvalido);
 
             if (string.IsNullOrWhiteSpace(senha)) throw new ArgumentException(MensagemSenhaInvalida);

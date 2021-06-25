@@ -33,7 +33,10 @@ namespace SGM.Infra.Segurancas
 
         private static List<Claim> ObterClaims(Usuario usuario)
         {
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, usuario.Email.ToString()) };
+            var claims = new List<Claim> {
+                new Claim(ClaimTypes.Name, usuario.Email),
+                new Claim(ClaimTypes.NameIdentifier, usuario.Nome)
+            };
             foreach (var papel in usuario.Papeis)
             {
                 claims.Add(new Claim(ClaimTypes.Role, papel.ToString().ToLower()));

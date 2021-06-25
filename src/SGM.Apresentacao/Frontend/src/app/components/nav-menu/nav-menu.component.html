@@ -24,8 +24,8 @@
         <div ngbDropdown class="d-inline-block text-dark">
           <button class="btn btn-outline-primary text-dark" id="dropdownModulos" ngbDropdownToggle>Módulos</button>
           <div ngbDropdownMenu aria-labelledby="dropdownModulos">
-            <button ngbDropdownItem>Georreferenciamento</button>
-            <button ngbDropdownItem>Serviços ao cidadão</button>
+            <button ngbDropdownItem (click)="irPara('modulos/geo')">Georreferenciamento</button>
+            <button ngbDropdownItem (click)="irPara('modulos/cidadao')">Serviços ao cidadão</button>
             <button ngbDropdownItem>Gestão de projetos</button>
             <button ngbDropdownItem>BI</button>
             <button ngbDropdownItem>Integrações</button>
