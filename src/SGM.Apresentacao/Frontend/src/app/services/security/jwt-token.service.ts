@@ -33,7 +33,9 @@ export class JWTTokenService {
             this.jwtToken = token;
         }
 
-        this.decodedToken = jwt_decode(this.jwtToken);
+        if (this.jwtToken) {
+            this.decodedToken = jwt_decode(this.jwtToken);
+        }
     }
 
     getDecodeToken() {
