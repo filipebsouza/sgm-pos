@@ -19,7 +19,7 @@ const ROUTES: Routes =
         { path: 'modulos/geo', component: GeoComponent, canActivate: [AuthorizeGuard], data: { papeis: [Papel.GESTOR, Papel.SERVIDOR] } }
     ];
 @NgModule({
-    imports: [RouterModule.forRoot(ROUTES)],
+    imports: [RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'corrected' })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
