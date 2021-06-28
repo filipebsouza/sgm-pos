@@ -2,9 +2,7 @@
     <ul ngbNav #nav="ngbNav" [(activeId)]="abaAtiva" class="nav-pills" orientation="vertical">
         <li *ngFor="let item in itens" [ngbNavItem]="item.identificadorDoItem">
             <a ngbNavLink (click)="carregarComponente(item)">{{ item.descricao }}</a>
-            <ng-template ngbNavContent>
-                <ng-template addComponent></ng-template>
-            </ng-template>
+            <ng-template ngbNavContent addComponent></ng-template>
         </li>
     </ul>
     <div [ngbNavOutlet]="nav" class="ml-4"></div>
