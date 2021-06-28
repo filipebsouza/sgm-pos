@@ -1,14 +1,13 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import { AddComponentDirective } from 'src/app/directives/add-component.directive';
+import { AfterViewInit, Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { SideBarItem } from 'src/app/models/side-bar.model';
 
 @Component({
     selector: 'app-nav-side-bar',
     templateUrl: './nav-side-bar.component.html'
 })
-export class NavSideBarComponent implements OnInit {
+export class NavSideBarComponent implements OnInit, AfterViewInit {
     @Input() itens: SideBarItem[] = [];
-    @ViewChild(AddComponentDirective, { static: true }) addComponent!: AddComponentDirective;
+    @ViewChild('conteudoDaAba', { read: ViewContainerRef }) viewContainerRef!: ViewContainerRef;
 
     abaAtiva: string = '';
 
@@ -16,6 +15,9 @@ export class NavSideBarComponent implements OnInit {
 
     ngOnInit(): void {
         this.abaAtiva = this.itens[0].identificadorDoItem;
+    }
+
+    ngAfterViewInit(): void {
         this.carregarComponenteDaPrimeiraAba();
     }
 
@@ -26,9 +28,7 @@ export class NavSideBarComponent implements OnInit {
 
     carregarComponente(item: SideBarItem) {
         const fabricador = this._componentFactoryResolver.resolveComponentFactory(item.componente);
-        const viewContainerRef = this.addComponent.viewContainerRef;
-        viewContainerRef.clear();
-
-        viewContainerRef.createComponent<AddComponentDirective>(fabricador);
+        this.viewContainerRef.clear();
+        this.viewContainerRef.createComponent(fabricador);
     }
 }
