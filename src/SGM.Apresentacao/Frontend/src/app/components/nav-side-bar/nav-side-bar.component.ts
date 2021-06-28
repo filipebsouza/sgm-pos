@@ -8,12 +8,14 @@ import { SideBarItem } from 'src/app/models/side-bar.model';
 })
 export class NavSideBarComponent implements OnInit {
     @Input() itens: SideBarItem[] = [];
-
     @ViewChild(AddComponentDirective, { static: true }) addComponent!: AddComponentDirective;
+
+    abaAtiva: string = '';
 
     constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
     ngOnInit(): void {
+        this.abaAtiva = this.itens[0].identificadorDoItem;
         this.carregarComponenteDaPrimeiraAba();
     }
 

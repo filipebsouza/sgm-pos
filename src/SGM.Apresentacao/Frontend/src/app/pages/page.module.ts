@@ -11,6 +11,7 @@ import { IptuComponent } from './modulos/cidadao/iptu/iptu.component';
 import { ItrComponent } from './modulos/cidadao/itr/itr.component';
 import { SturComponent } from './modulos/cidadao/stur/stur.component';
 import { ServicosAoCidadaoComponent } from './modulos/cidadao/servicos-ao-cidadao/servicos-ao-cidadao.component';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { ServicosAoCidadaoComponent } from './modulos/cidadao/servicos-ao-cidada
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        ComponentsModule
     ]
 })
 export class PageModule { }
