@@ -14,14 +14,14 @@ import localeBr from '@angular/common/locales/pt';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { ComponentsModule } from './components/components.module';
+import { AddComponentDirective } from './directives/add-component.directive';
 
 registerLocaleData(localeBr, 'pt');
 
 @NgModule({
   declarations: [
     AppComponent,
-    // ToastMessageComponent,
-    // NavMenuComponent
+    AddComponentDirective
   ],
   exports: [
     ComponentsModule,

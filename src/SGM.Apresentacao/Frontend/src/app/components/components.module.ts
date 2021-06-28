@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgbDropdownModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbNavModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from './loader/loader.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavSideBarComponent } from './nav-side-bar/nav-side-bar.component';
 import { ToastMessageComponent } from './toast-message/toast-message.component';
 
 @NgModule({
@@ -11,17 +12,20 @@ import { ToastMessageComponent } from './toast-message/toast-message.component';
         NavMenuComponent,
         ToastMessageComponent,
         LoaderComponent,
+        NavSideBarComponent
     ],
     exports: [
         NavMenuComponent,
         ToastMessageComponent,
-        LoaderComponent
+        LoaderComponent,
+        NavSideBarComponent
     ],
     imports: [
         CommonModule,
         RouterModule,
         NgbToastModule,
-        NgbDropdownModule
+        NgbDropdownModule,
+        NgbNavModule
     ]
 })
 export class ComponentsModule { }
