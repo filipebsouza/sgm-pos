@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using SGM.Dominio.Entidades;
+using SGM.Dominio.Repositorios;
 
 namespace SGM.Infra
 {
-    public class RepositorioDeUsuarios
+    public class RepositorioDeUsuarios : IRepositorioDeUsuarios
     {
         private readonly IReadOnlyList<Usuario> _mockDeUsuarios = new List<Usuario>
         {
@@ -21,5 +22,8 @@ namespace SGM.Infra
                 usuario.Email == email && usuario.SenhaEhValida(senha)
             );
         }
+
+        public Usuario ObterPor(string email) =>
+            _mockDeUsuarios.FirstOrDefault(usuario => usuario.Email == email);
     }
 }

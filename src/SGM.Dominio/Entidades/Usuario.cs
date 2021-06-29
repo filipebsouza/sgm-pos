@@ -8,11 +8,11 @@ namespace SGM.Dominio.Entidades
 {
     public class Usuario
     {
-        public static readonly string MensagemNomeInvalido = "Nome inválido";
-        public static readonly string MensagemEmailInvalido = "Email inválido";
-        public static readonly string MensagemSenhaInvalida = "Senha inválida";
-        public static readonly string MensagemSenhaDeveTerEntre6E8Caracteres = "Senha deve ter entre 6 e 8 caracteres";
-        public static readonly string MensagemPapelInvalido = "Papel de permissão inválido";
+        public const string MensagemNomeInvalido = "Nome inválido";
+        public const string MensagemEmailInvalido = "Email inválido";
+        public const string MensagemSenhaInvalida = "Senha inválida";
+        public const string MensagemSenhaDeveTerEntre6E8Caracteres = "Senha deve ter entre 6 e 8 caracteres";
+        public const string MensagemPapelInvalido = "Papel de permissão inválido";
 
         public int Id { get; }
         public string Nome { get; }

@@ -1,12 +1,14 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.IdentityModel.Tokens;
+using SGM.Dominio.Repositorios;
 using SGM.Infra.Segurancas;
 
 namespace SGM.Apresentacao.Middlewares
@@ -14,10 +16,12 @@ namespace SGM.Apresentacao.Middlewares
     public class JwtMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly IRepositorioDeUsuarios _repositorioDeUsuarios;
 
-        public JwtMiddleware(RequestDelegate next)
+        public JwtMiddleware(RequestDelegate next, IRepositorioDeUsuarios repositorioDeUsuarios)
         {
             _next = next;
+            _repositorioDeUsuarios = repositorioDeUsuarios;
         }
 
         public async Task Invoke(HttpContext context)
@@ -44,11 +48,11 @@ namespace SGM.Apresentacao.Middlewares
                 return;
             }
 
-            attachUserToContext(context, token);
+            AdicionarUsuarioAoContexto(context, token);
             await _next(context);
         }
 
-        private void attachUserToContext(HttpContext context, string token)
+        private void AdicionarUsuarioAoContexto(HttpContext context, string token)
         {
             try
             {
@@ -64,10 +68,9 @@ namespace SGM.Apresentacao.Middlewares
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                // var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+                var email = jwtToken.Claims.First(x => x.Type == ClaimTypes.Name).Value;
 
-                // // attach user to context on successful jwt validation
-                // context.Items["User"] = userService.GetById(userId);
+                context.Items["User"] = _repositorioDeUsuarios.ObterPor(email);
             }
             catch
             {
