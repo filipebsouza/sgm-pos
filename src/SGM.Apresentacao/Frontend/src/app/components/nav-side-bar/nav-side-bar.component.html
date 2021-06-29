@@ -4,7 +4,7 @@
         <li *ngFor="let item of itens" [ngbNavItem]="item.identificadorDoItem">
             <a ngbNavLink>{{ item.descricao }}</a>
             <ng-template ngbNavContent>
-                <ng-template #conteudoDaAba></ng-template>
+                <ng-container *ngComponentOutlet="componenteAtual"></ng-container>
             </ng-template>
         </li>
     </ul>

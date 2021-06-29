@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, Type } from '@angular/core';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { SideBarItem } from 'src/app/models/side-bar.model';
 
@@ -6,41 +6,21 @@ import { SideBarItem } from 'src/app/models/side-bar.model';
     selector: 'app-nav-side-bar',
     templateUrl: './nav-side-bar.component.html'
 })
-export class NavSideBarComponent implements OnInit, AfterViewInit, OnDestroy {
+export class NavSideBarComponent implements OnInit {
     @Input() itens: SideBarItem[] = [];
-    @ViewChild('conteudoDaAba', { read: ViewContainerRef }) viewContainerRef!: ViewContainerRef;
 
-    componentRef: ComponentRef<any>;
+    componenteAtual: Type<any>;
     abaAtiva: string = '';
-
-    constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
     ngOnInit(): void {
         this.abaAtiva = this.itens[0].identificadorDoItem;
-    }
-
-    ngAfterViewInit(): void {
-        this.carregarComponenteDaPrimeiraAba();
-    }
-
-    ngOnDestroy(): void {
-        this.componentRef.destroy();
+        const primeiroItem = this.itens[0];
+        this.componenteAtual = primeiroItem.componente;
     }
 
     onNavChange(changeEvent: NgbNavChangeEvent) {
         const indiceDoComponente = changeEvent.nextId;
-        this.carregarComponente(this.itens.find(item => item.identificadorDoItem === indiceDoComponente));
-    }
-
-    carregarComponenteDaPrimeiraAba() {
-        const item = this.itens[0];
-        this.carregarComponente(item);
-    }
-
-    carregarComponente(item: SideBarItem) {
-        this.viewContainerRef.clear();
-        const fabricador = this._componentFactoryResolver.resolveComponentFactory(item.componente);
-        this.componentRef = this.viewContainerRef.createComponent<typeof item.componente>(fabricador);
-        //this.viewContainerRef.insert(this.componentRef.hostView);
+        const item = this.itens.find(item => item.identificadorDoItem === indiceDoComponente);
+        this.componenteAtual = item.componente;
     }
 }
