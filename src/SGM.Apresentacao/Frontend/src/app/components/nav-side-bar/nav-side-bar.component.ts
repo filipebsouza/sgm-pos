@@ -41,5 +41,6 @@ export class NavSideBarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.viewContainerRef.clear();
         const fabricador = this._componentFactoryResolver.resolveComponentFactory(item.componente);
         this.componentRef = this.viewContainerRef.createComponent<typeof item.componente>(fabricador);
+        //this.viewContainerRef.insert(this.componentRef.hostView);
     }
 }
