@@ -1,7 +1,16 @@
+using System;
+
 namespace SGM.Dominio.Entidades
 {
     public abstract class Imposto
     {
+        public const string MensagemNomeInvalido = "Nome inválido";
+        public const string MensagemSiglaInvalida = "Sigla inválida";
+        public const string MensagemContribuinteInvalido = "Contribuinte inválido";
+        public const string MensagemAnoDeReferenciaInvalido = "Ano de referência inválido";
+        public const string MensagemNomeExtrapolaTamanho = "Nome deve ter no máximo 200 caracteres";
+        public const string MensagemSiglaExtrapolaTamanho = "Sigla deve ter no máximo 8 caracteres";
+
         public string Nome { get; }
         public string Sigla { get; }
         public Pessoa Contribuinte { get; }
@@ -11,10 +20,27 @@ namespace SGM.Dominio.Entidades
 
         protected Imposto(string nome, string sigla, Pessoa contribuinte, int anoReferencia)
         {
+            ValidarParametros(nome, sigla, contribuinte, anoReferencia);
+
             Nome = nome;
-            Sigla = sigla;
+            Sigla = sigla.ToUpper();
             Contribuinte = contribuinte;
             AnoReferencia = anoReferencia;
+        }
+
+        private static void ValidarParametros(string nome, string sigla, Pessoa contribuinte, int anoReferencia)
+        {
+            if (string.IsNullOrWhiteSpace(nome)) throw new ArgumentException(MensagemNomeInvalido);
+
+            if (string.IsNullOrWhiteSpace(sigla)) throw new ArgumentException(MensagemSiglaInvalida);
+
+            if (contribuinte is null) throw new ArgumentException(MensagemContribuinteInvalido);
+
+            if (anoReferencia <= 0) throw new ArgumentException(MensagemAnoDeReferenciaInvalido);
+
+            if (nome.Length > 200) throw new ArgumentException(MensagemNomeExtrapolaTamanho);
+
+            if (sigla.Length > 8) throw new ArgumentException(MensagemSiglaExtrapolaTamanho);
         }
 
         public void AtribuirBaseDeCalculo(double baseDeCalculo)
