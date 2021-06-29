@@ -11,17 +11,13 @@ import { AppRoutingModule } from './router/app-routing.module';
 import { environment } from 'src/environments/environment';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
-import { ToastMessageComponent } from './components/toast-message/toast-message.component';
-import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { ComponentsModule } from './components/components.module';
-import { AddComponentDirective } from './directives/add-component.directive';
 
 registerLocaleData(localeBr, 'pt');
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AddComponentDirective
+    AppComponent
   ],
   exports: [
     ComponentsModule,
