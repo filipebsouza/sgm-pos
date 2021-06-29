@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { SideBarItem } from 'src/app/models/side-bar.model';
 
@@ -6,22 +6,25 @@ import { SideBarItem } from 'src/app/models/side-bar.model';
     selector: 'app-nav-side-bar',
     templateUrl: './nav-side-bar.component.html'
 })
-export class NavSideBarComponent implements OnInit, AfterViewInit {
+export class NavSideBarComponent implements OnInit, AfterViewInit, OnDestroy {
     @Input() itens: SideBarItem[] = [];
     @ViewChild('conteudoDaAba', { read: ViewContainerRef }) viewContainerRef!: ViewContainerRef;
 
+    componentRef: ComponentRef<any>;
     abaAtiva: string = '';
-    // componenteAtual: any;
 
     constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
     ngOnInit(): void {
-        // this.componenteAtual = this.itens[0].componente;
         this.abaAtiva = this.itens[0].identificadorDoItem;
     }
 
     ngAfterViewInit(): void {
         this.carregarComponenteDaPrimeiraAba();
+    }
+
+    ngOnDestroy(): void {
+        this.componentRef.destroy();
     }
 
     onNavChange(changeEvent: NgbNavChangeEvent) {
@@ -35,13 +38,8 @@ export class NavSideBarComponent implements OnInit, AfterViewInit {
     }
 
     carregarComponente(item: SideBarItem) {
-        const fabricador = this._componentFactoryResolver.resolveComponentFactory(item.componente);
-        // if (this.viewContainerRef.indexOf(this.componenteAtual) >= 0) {
-        //     this.viewContainerRef.remove(this.viewContainerRef.indexOf(this.componenteAtual));
-        // }
         this.viewContainerRef.clear();
-        this.viewContainerRef.createComponent<typeof item.componente>(fabricador);
-
-        // this.componenteAtual = item.componente;
+        const fabricador = this._componentFactoryResolver.resolveComponentFactory(item.componente);
+        this.componentRef = this.viewContainerRef.createComponent<typeof item.componente>(fabricador);
     }
 }
