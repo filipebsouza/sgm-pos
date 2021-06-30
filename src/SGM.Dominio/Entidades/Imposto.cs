@@ -14,18 +14,18 @@ namespace SGM.Dominio.Entidades
         public string Nome { get; }
         public string Sigla { get; }
         public Pessoa Contribuinte { get; }
-        public int AnoReferencia { get; }
+        public int AnoDeReferencia { get; }
         public double BaseDeCalculo { get; private set; }
         public double Aliquota { get; private set; }
 
-        protected Imposto(string nome, string sigla, Pessoa contribuinte, int anoReferencia)
+        protected Imposto(string nome, string sigla, Pessoa contribuinte, int anoDeReferencia)
         {
-            ValidarParametros(nome, sigla, contribuinte, anoReferencia);
+            ValidarParametros(nome, sigla, contribuinte, anoDeReferencia);
 
             Nome = nome;
             Sigla = sigla.ToUpper();
             Contribuinte = contribuinte;
-            AnoReferencia = anoReferencia;
+            AnoDeReferencia = anoDeReferencia;
         }
 
         private static void ValidarParametros(string nome, string sigla, Pessoa contribuinte, int anoReferencia)

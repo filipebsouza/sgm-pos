@@ -2,18 +2,11 @@ using SGM.Dominio.ObjetosDeValor;
 
 namespace SGM.Dominio.Entidades.Builders
 {
-    public class PessoaFisicaBuilder
+    public class PessoaFisicaBuilder : PessoaBuilder
     {
-        private string _nome;
         private Cpf _cpf;
 
-        public static PessoaFisicaBuilder Novo() => new();
-
-        public PessoaFisicaBuilder ComNome(string nome)
-        {
-            _nome = nome;
-            return this;
-        }
+        new public static PessoaFisicaBuilder Novo() => new();
 
         public PessoaFisicaBuilder ComCpf(string valor)
         {

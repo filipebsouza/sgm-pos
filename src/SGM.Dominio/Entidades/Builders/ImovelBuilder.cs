@@ -9,28 +9,28 @@ namespace SGM.Dominio.Entidades.Builders
 
         public static ImovelBuilder Novo() => new();
 
-        public ImovelBuilder ComLogradouro(string logradouro)
+        public T ComLogradouro<T>(string logradouro) where T : ImovelBuilder
         {
             _logradouro = logradouro;
-            return this;
+            return this as T;
         }
 
-        public ImovelBuilder ComNumero(int numero)
+        public T ComNumero<T>(int numero) where T : ImovelBuilder
         {
             _numero = numero;
-            return this;
+            return this as T;
         }
 
-        public ImovelBuilder ComBairro(string bairro)
+        public T ComBairro<T>(string bairro) where T : ImovelBuilder
         {
             _bairro = bairro;
-            return this;
+            return this as T;
         }
 
-        public ImovelBuilder ComAreaTotal(int areaTotal)
+        public T ComAreaTotal<T>(int areaTotal) where T : ImovelBuilder
         {
             _areaTotal = areaTotal;
-            return this;
+            return this as T;
         }
     }
 }

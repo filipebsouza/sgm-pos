@@ -13,6 +13,7 @@ namespace SGM.Dominio.Entidades
         public const string MensagemSenhaInvalida = "Senha inválida";
         public const string MensagemSenhaDeveTerEntre6E8Caracteres = "Senha deve ter entre 6 e 8 caracteres";
         public const string MensagemPapelInvalido = "Papel de permissão inválido";
+        public const string MensagemPessoaInvalida = "Pessoa inválida";
 
         public int Id { get; }
         public string Nome { get; }
@@ -26,14 +27,21 @@ namespace SGM.Dominio.Entidades
             }
         }
         public IReadOnlyList<PapelDoUsuario> Papeis { get; }
+        public Pessoa Pessoa { get; }
 
         public Usuario(string nome, string email, string senha, params PapelDoUsuario[] papeis)
         {
-            ValidaParametros(nome, email, senha, papeis);
+            ValidarParametros(nome, email, senha, papeis);
             Nome = nome;
             Email = email;
             Senha = senha;
             Papeis = papeis;
+        }
+
+        public Usuario(string nome, string email, string senha, Pessoa pessoa, params PapelDoUsuario[] papeis) : this(nome, email, senha, papeis)
+        {
+            ValidarPessoa(pessoa);
+            Pessoa = pessoa;
         }
 
         public bool SenhaEhValida(string senha)
@@ -55,7 +63,7 @@ namespace SGM.Dominio.Entidades
             return buffer3.AsSpan().SequenceEqual(buffer4);
         }
 
-        private static void ValidaParametros(string nome, string email, string senha, PapelDoUsuario[] papeis)
+        private static void ValidarParametros(string nome, string email, string senha, PapelDoUsuario[] papeis)
         {
             if (string.IsNullOrWhiteSpace(nome)) throw new ArgumentException(MensagemNomeInvalido);
 
@@ -65,7 +73,12 @@ namespace SGM.Dominio.Entidades
 
             if (senha?.Length.Between(6, 8) is not true) throw new ArgumentException(MensagemSenhaDeveTerEntre6E8Caracteres);
 
-            if (papeis?.Length <= 0) throw new ArgumentException(MensagemPapelInvalido);
+            if (papeis is { Length: <= 0 }) throw new ArgumentException(MensagemPapelInvalido);
+        }
+
+        private static void ValidarPessoa(Pessoa pessoa)
+        {
+            if (pessoa is null) throw new ArgumentException(MensagemPessoaInvalida);
         }
 
         private static string GerarHashDaSenha(string senha)
