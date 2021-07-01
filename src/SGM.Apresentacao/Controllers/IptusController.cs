@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SGM.Apresentacao.Helpers;
 using SGM.Dominio.Entidades;
+using SGM.Dominio.Repositorios;
 
 namespace SGM.Apresentacao.Controllers
 {
@@ -8,9 +9,11 @@ namespace SGM.Apresentacao.Controllers
     [Route("[controller]")]
     public class IptusController : ControllerBase
     {
-        public IptusController()
+        private readonly IRepositorioDeIptus _repositorioDeIptus;
+
+        public IptusController(IRepositorioDeIptus repositorioDeIptus)
         {
-            
+            _repositorioDeIptus = repositorioDeIptus;
         }
 
         [HttpGet]
@@ -18,7 +21,8 @@ namespace SGM.Apresentacao.Controllers
         [AuthorizeRoles(PapelDoUsuario.Contribuinte, PapelDoUsuario.Servidor)]
         public ActionResult Get()
         {
-            
+
+            //_repositorioDeIptus.ObterPor()
             return null;
         }
     }
