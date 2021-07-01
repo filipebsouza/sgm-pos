@@ -12,6 +12,8 @@ import { ItrComponent } from './modulos/cidadao/itr/itr.component';
 import { SturComponent } from './modulos/cidadao/stur/stur.component';
 import { ServicosAoCidadaoComponent } from './modulos/cidadao/servicos-ao-cidadao/servicos-ao-cidadao.component';
 import { ComponentsModule } from '../components/components.module';
+import { AtendimentoComponent } from './modulos/cidadao/iptu/atendimento/atendimento.component';
+import { AcessoPublicoComponent } from './modulos/cidadao/iptu/acesso-publico/acesso-publico.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +23,8 @@ import { ComponentsModule } from '../components/components.module';
         ModulosComponent,
         CidadaoComponent,
         IptuComponent,
+        AcessoPublicoComponent,
+        AtendimentoComponent,
         ItrComponent,
         SturComponent,
         ServicosAoCidadaoComponent,

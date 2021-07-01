@@ -20,7 +20,7 @@ namespace SGM.Apresentacao.Controllers
 
         [HttpGet]
         [Route("")]
-        [AuthorizeRoles(PapelDoUsuario.Contribuinte, PapelDoUsuario.Servidor)]
+        [AuthorizeRoles(PapelDoUsuario.Contribuinte)]
         public ActionResult Get()
         {
             var iptuAnoAtual = _repositorioDeIptus.ObterPor(this.ObterUsuarioLogado().Pessoa, DateTime.Now.Year);
@@ -29,7 +29,26 @@ namespace SGM.Apresentacao.Controllers
             {
                 Logradouro = iptuAnoAtual.Imovel.Logradouro,
                 Numero = iptuAnoAtual.Imovel.Numero,
-                Bairro = iptuAnoAtual.Imovel.Bairro
+                Bairro = iptuAnoAtual.Imovel.Bairro,
+                PossuiDebitos = iptuAnoAtual.PossuiDebitos,
+                SaldoDevedor = iptuAnoAtual.SaldoDevedor
+            });
+        }
+
+        [HttpGet]
+        [Route("/{idDoContribuinte}/{anoDeRefencia}")]
+        [AuthorizeRoles(PapelDoUsuario.Servidor)]
+        public ActionResult GetPorContribuinteEAnoDeReferencia(int idDoContribuinte, int anoDeReferencia)
+        {
+            var iptuAnoAtual = _repositorioDeIptus.ObterPor(idDoContribuinte, anoDeReferencia);
+
+            return Ok(new IptuHttpDto
+            {
+                Logradouro = iptuAnoAtual.Imovel.Logradouro,
+                Numero = iptuAnoAtual.Imovel.Numero,
+                Bairro = iptuAnoAtual.Imovel.Bairro,
+                PossuiDebitos = iptuAnoAtual.PossuiDebitos,
+                SaldoDevedor = iptuAnoAtual.SaldoDevedor
             });
         }
     }

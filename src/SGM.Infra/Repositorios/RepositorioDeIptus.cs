@@ -31,10 +31,13 @@ namespace SGM.Infra.Repositorios
                 .Construir()
         };
 
-        public Iptu ObterPor(Pessoa contribuinte, int anoReferencia)
+        public Iptu ObterPor(Pessoa contribuinte, int anoDeReferencia)
+            => ObterPor(contribuinte.Id, anoDeReferencia);
+
+        public Iptu ObterPor(int idDoContribuinte, int anoDeReferencia)
             => _mockDeIptus.FirstOrDefault(iptu =>
-                iptu.Contribuinte.Id == contribuinte.Id &&
-                iptu.AnoDeReferencia == anoReferencia);
+                iptu.Contribuinte.Id == idDoContribuinte &&
+                iptu.AnoDeReferencia == anoDeReferencia);
 
     }
 }
