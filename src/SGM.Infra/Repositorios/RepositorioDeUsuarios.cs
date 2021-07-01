@@ -27,6 +27,12 @@ namespace SGM.Infra.Repositorios
                           .ComEmail("joao@joao.com.br")
                           .ComSenha("senha123")
                           .ComPapeis(PapelDoUsuario.Contribuinte)
+                          .ComPessoa(
+                              PessoaFisicaBuilder.Novo()
+                                                 .ComNome<PessoaFisicaBuilder>("João Contribuinte")
+                                                 .ComCpf("03227637111")
+                                                 .Construir()
+                          )
                           .Construir()
         };
 
