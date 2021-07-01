@@ -2,10 +2,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGM.Dominio.Entidades;
-using SGM.Infra;
 using SGM.Infra.Segurancas;
 using SGM.Apresentacao.Dtos;
 using SGM.Apresentacao.Helpers;
+using SGM.Dominio.Repositorios;
 
 namespace SGM.Apresentacao.Controllers
 {
@@ -17,7 +17,7 @@ namespace SGM.Apresentacao.Controllers
         [Route("login")]
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> Login(
-            [FromServices] RepositorioDeUsuarios repositorio,
+            [FromServices] IRepositorioDeUsuarios repositorio,
             [FromBody] UsuarioHttpDto dto
         )
         {

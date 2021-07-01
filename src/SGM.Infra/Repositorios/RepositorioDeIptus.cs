@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using SGM.Dominio.Entidades;
 using SGM.Dominio.Entidades.Builders;
-using SGM.Dominio.ObjetosDeValor;
 using SGM.Dominio.Repositorios;
 
 namespace SGM.Infra.Repositorios

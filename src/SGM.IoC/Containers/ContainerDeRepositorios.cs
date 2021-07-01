@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
-using SGM.Infra;
+using SGM.Dominio.Repositorios;
+using SGM.Infra.Repositorios;
 
 namespace SGM.IoC.Containers
 {
@@ -7,7 +8,8 @@ namespace SGM.IoC.Containers
     {
         internal static IServiceCollection RegistrarDependenciasDeRepositorios(this IServiceCollection services)
         {
-            services.AddTransient<RepositorioDeUsuarios>();
+            services.AddTransient<IRepositorioDeUsuarios, RepositorioDeUsuarios>();
+            services.AddTransient<IRepositorioDeIptus, RepositorioDeIptus>();
 
             return services;
         }

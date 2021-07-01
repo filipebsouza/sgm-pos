@@ -68,7 +68,7 @@ namespace SGM.Apresentacao.Middlewares
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var email = jwtToken.Claims.First(x => x.Type == ClaimTypes.Name).Value;
+                var email = jwtToken.Claims.FirstOrDefault(x => x.Type == "unique_name").Value;
 
                 context.Items["User"] = _repositorioDeUsuarios.ObterPor(email);
             }

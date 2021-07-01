@@ -4,6 +4,6 @@ namespace SGM.Dominio.Repositorios
 {
     public interface IRepositorioDeIptus
     {
-        Iptu ObterPor(int anoReferencia);
+        Iptu ObterPor(Pessoa contriuinte, int anoReferencia);
     }
 }

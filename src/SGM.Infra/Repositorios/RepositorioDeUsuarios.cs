@@ -4,7 +4,7 @@ using SGM.Dominio.Entidades;
 using SGM.Dominio.Entidades.Builders;
 using SGM.Dominio.Repositorios;
 
-namespace SGM.Infra
+namespace SGM.Infra.Repositorios
 {
     public class RepositorioDeUsuarios : IRepositorioDeUsuarios
     {

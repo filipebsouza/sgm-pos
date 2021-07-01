@@ -1,4 +1,6 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
+using SGM.Apresentacao.Dtos;
 using SGM.Apresentacao.Helpers;
 using SGM.Dominio.Entidades;
 using SGM.Dominio.Repositorios;
@@ -21,9 +23,14 @@ namespace SGM.Apresentacao.Controllers
         [AuthorizeRoles(PapelDoUsuario.Contribuinte, PapelDoUsuario.Servidor)]
         public ActionResult Get()
         {
+            var iptuAnoAtual = _repositorioDeIptus.ObterPor(this.ObterUsuarioLogado().Pessoa, DateTime.Now.Year);
 
-            //_repositorioDeIptus.ObterPor()
-            return null;
+            return Ok(new IptuHttpDto
+            {
+                Logradouro = iptuAnoAtual.Imovel.Logradouro,
+                Numero = iptuAnoAtual.Imovel.Numero,
+                Bairro = iptuAnoAtual.Imovel.Bairro
+            });
         }
     }
 }
