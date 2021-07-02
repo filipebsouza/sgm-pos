@@ -5,6 +5,7 @@ namespace SGM.Dominio.Entidades.Builders
         private int _areaConstruida;
         private bool _possuiAsfalto;
         private bool _possuiEsgoto;
+        private double _valorVenal;
 
         new public static ImovelUrbanoBuilder Novo() => new();
 
@@ -26,15 +27,26 @@ namespace SGM.Dominio.Entidades.Builders
             return this;
         }
 
+        public ImovelUrbanoBuilder ComValorVenal(double valorVenal)
+        {
+            _valorVenal = valorVenal;
+            return this;
+        }
+
         public ImovelUrbano Construir()
         {
-            return new(_logradouro,
+             ImovelUrbano imovelUrbano = new (_logradouro,
                        _numero,
                        _bairro,
                        _areaTotal,
                        _areaConstruida,
                        _possuiAsfalto,
                        _possuiEsgoto);
+
+            if (_valorVenal > 0)
+                imovelUrbano.AdicionarValorVenal(_valorVenal);
+
+            return imovelUrbano;
         }
     }
 }

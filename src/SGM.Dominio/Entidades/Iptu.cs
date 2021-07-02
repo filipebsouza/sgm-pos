@@ -11,8 +11,8 @@ namespace SGM.Dominio.Entidades
         public const double ALIQUOTA_BASE = 0.02;
 
         public ImovelUrbano Imovel { get; }
-        new public double BaseDeCalculo => Imovel.ValorVenal;
-        new public double Aliquota
+        public override double BaseDeCalculo => Imovel.ValorVenal;
+        public override double Aliquota
         {
             get
             {

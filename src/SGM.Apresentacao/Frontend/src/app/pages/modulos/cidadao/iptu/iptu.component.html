@@ -1,3 +1,2 @@
-<h1>IPTU</h1>
-<app-cidado-iptu-acesso-publico *ngIf="usuario.ehContribuinte"></app-cidado-iptu-acesso-publico>
+<app-cidado-iptu-acesso-publico [usuario]="usuario" *ngIf="usuario.ehContribuinte"></app-cidado-iptu-acesso-publico>
 <app-cidado-iptu-atendimento *ngIf="usuario.ehServidor"></app-cidado-iptu-atendimento>

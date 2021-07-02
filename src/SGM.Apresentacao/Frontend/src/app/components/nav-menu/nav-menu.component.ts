@@ -35,5 +35,6 @@ export class NavMenuComponent implements OnInit {
 
   sair() {
     this._jwtService.setToken(null);
+    this._router.navigate(['login']);
   }
 }

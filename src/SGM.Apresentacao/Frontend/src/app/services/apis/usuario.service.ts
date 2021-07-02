@@ -18,7 +18,6 @@ export class UsuarioService extends BaseApiService<Usuario> {
         return this.http.post<Usuario>(`${this.baseUrl}/${this.recurso}/login`, usuario)
             .pipe(
                 map(retorno => {
-                    console.log(retorno);
                     this._jwtService.setToken(retorno.token);
                 }),
                 first()

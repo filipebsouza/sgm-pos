@@ -29,6 +29,7 @@ namespace SGM.Infra.Repositorios
                           .ComPapeis(PapelDoUsuario.Contribuinte)
                           .ComPessoa(
                               PessoaFisicaBuilder.Novo()
+                                                 .ComId(1)
                                                  .ComNome<PessoaFisicaBuilder>("João Contribuinte")
                                                  .ComCpf("03227637111")
                                                  .Construir()

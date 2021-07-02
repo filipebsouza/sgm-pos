@@ -15,6 +15,7 @@ namespace SGM.Infra.Repositorios
                 .ComAnoDeReferencia<IptuBuilder>(2021)
                 .ComContribuinte<IptuBuilder>(
                     PessoaFisicaBuilder.Novo()
+                                       .ComId(1)
                                        .ComNome<PessoaFisicaBuilder>("Teste e tals")
                                        .ComCpf("03227637111")
                                        .Construir()
@@ -25,6 +26,7 @@ namespace SGM.Infra.Repositorios
                         .ComNumero<ImovelUrbanoBuilder>(123)
                         .ComBairro<ImovelUrbanoBuilder>("Vila Qualquer")
                         .ComAreaTotal<ImovelUrbanoBuilder>(234)
+                        .ComValorVenal(2580.55)
                         .ComAreaConstruida(78)
                         .Construir()
                 )
@@ -32,11 +34,13 @@ namespace SGM.Infra.Repositorios
         };
 
         public Iptu ObterPor(Pessoa contribuinte, int anoDeReferencia)
-            => ObterPor(contribuinte.Id, anoDeReferencia);
-
-        public Iptu ObterPor(int idDoContribuinte, int anoDeReferencia)
             => _mockDeIptus.FirstOrDefault(iptu =>
-                iptu.Contribuinte.Id == idDoContribuinte &&
+                iptu.Contribuinte.Id == contribuinte.Id &&
+                iptu.AnoDeReferencia == anoDeReferencia);
+
+        public Iptu ObterPor(string cpfDoContribuinte, int anoDeReferencia)
+            => _mockDeIptus.FirstOrDefault(iptu =>
+                (iptu.Contribuinte as PessoaFisica)?.Cpf.Valor == cpfDoContribuinte &&
                 iptu.AnoDeReferencia == anoDeReferencia);
 
     }

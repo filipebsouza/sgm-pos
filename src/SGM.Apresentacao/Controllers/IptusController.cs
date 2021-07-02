@@ -19,7 +19,6 @@ namespace SGM.Apresentacao.Controllers
         }
 
         [HttpGet]
-        [Route("")]
         [AuthorizeRoles(PapelDoUsuario.Contribuinte)]
         public ActionResult Get()
         {
@@ -35,12 +34,11 @@ namespace SGM.Apresentacao.Controllers
             });
         }
 
-        [HttpGet]
-        [Route("/{idDoContribuinte}/{anoDeRefencia}")]
+        [HttpGet("{cpfDoContribuinte}/{anoDeReferencia}")]
         [AuthorizeRoles(PapelDoUsuario.Servidor)]
-        public ActionResult GetPorContribuinteEAnoDeReferencia(int idDoContribuinte, int anoDeReferencia)
+        public ActionResult GetPorContribuinteEAnoDeReferencia(string cpfDoContribuinte, int anoDeReferencia)
         {
-            var iptuAnoAtual = _repositorioDeIptus.ObterPor(idDoContribuinte, anoDeReferencia);
+            var iptuAnoAtual = _repositorioDeIptus.ObterPor(cpfDoContribuinte, anoDeReferencia);
 
             return Ok(new IptuHttpDto
             {

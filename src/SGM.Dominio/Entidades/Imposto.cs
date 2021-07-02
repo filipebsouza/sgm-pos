@@ -16,8 +16,8 @@ namespace SGM.Dominio.Entidades
         public string Sigla { get; }
         public Pessoa Contribuinte { get; }
         public int AnoDeReferencia { get; }
-        public double BaseDeCalculo { get; }
-        public double Aliquota { get; }
+        public abstract double BaseDeCalculo { get; }
+        public abstract double Aliquota { get; }
         public double ValorPago { get; private set; }
 
         public bool PossuiDebitos => Debitos > 0;

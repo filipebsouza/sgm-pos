@@ -7,7 +7,7 @@ namespace SGM.Dominio.Entidades
         public const string MensagemNomeInvalido = "Nome inválido";
         public const string MensagemNomeExtrapolaTamanho = "Nome deve ter no máximo 200 caracteres";
 
-        public int Id { get; }
+        public int Id { get; protected set; }
         public string Nome { get; }
 
         protected Pessoa(string nome)

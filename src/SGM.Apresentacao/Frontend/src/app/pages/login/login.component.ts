@@ -21,7 +21,14 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.usuario = this._jwtService.getUsuario();
+        this._jwtService.emissorDeUsuarioLogado.subscribe(usuario => {
+            this.usuario = usuario;
+            if (!this.usuario) {
+                this.usuario = this._jwtService.getUsuario();
+            } else {
+                this.form.reset();
+            }
+        });
     }
 
     construirForm() {

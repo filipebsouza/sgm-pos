@@ -33,7 +33,7 @@ export class AtendimentoComponent implements OnInit {
     pesquisar() {
         if (this.form.valid) {            
             this._iptuService
-                .getPorCpfDoContribuinteEAnoDeReferencia(+this.form.get('cpf'), +this.form.get('ano'))
+                .getPorCpfDoContribuinteEAnoDeReferencia(this.form.get('cpf').value, +this.form.get('ano').value)
                 .subscribe((i: Iptu) => {
                     this.iptu = i;
                 });
@@ -44,5 +44,10 @@ export class AtendimentoComponent implements OnInit {
                 dataEHora: new Date()
             });
         }
+    }
+
+    limparTela() {
+        this.form.reset();
+        this.iptu = null;
     }
 }

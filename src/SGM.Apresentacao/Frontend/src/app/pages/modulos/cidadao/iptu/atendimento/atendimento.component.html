@@ -1,11 +1,21 @@
-<h1>Atendimento</h1>
-<form ng-form="form" class="form-iptu" novalidate [formGroup]="form" (ngSubmit)="pesquisar()">
-    <h3 class="h3 mb-3 font-weight-normal">Por favor insira as informações</h3>
-    <label for="inputCpf" class="sr-only">CPF</label>
-    <input formControlName="cpf" mask="000.000.000-00" type="text" id="inputCpf" class="form-control" placeholder="CPF"
-        required autofocus>
-    <label for="inputAno" class="sr-only">Ano de Referência</label>
-    <input formControlName="ano" mask="0000" type="text" id="inputAno" [maxlength]="4" class="form-control" placeholder="Ano"
-        required>
-    <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Pesquisar</button>
-</form>
+<div class="row">
+    <div class="col-md-6">
+        <form class="form-iptu" novalidate [formGroup]="form" (ngSubmit)="pesquisar()">
+            <h5 class="h3 mb-3 font-weight-normal">Por favor insira as informações</h5>
+            <label for="inputCpf" class="sr-only">CPF</label>
+            <input formControlName="cpf" mask="000.000.000-00" type="text" id="inputCpf" class="form-control" placeholder="CPF"
+                required autofocus>
+            <label for="inputAno" class="sr-only">Ano de Referência</label>
+            <input formControlName="ano" mask="0000" type="text" id="inputAno" [maxlength]="4" class="form-control" placeholder="Ano"
+                required>
+            <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Pesquisar</button>
+            <button class="btn btn-lg btn-secondary btn-block" type="button" (click)="limparTela()">Limpar</button>
+        </form>
+    </div>
+
+    <div *ngIf="!!iptu" class="mt-5 pt-5 col-md-6">
+        <app-cidadao-iptu-resultado-pesquisa
+            [iptu]="iptu">
+        </app-cidadao-iptu-resultado-pesquisa>
+    </div>
+</div>

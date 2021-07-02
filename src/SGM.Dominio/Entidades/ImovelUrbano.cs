@@ -39,6 +39,6 @@ namespace SGM.Dominio.Entidades
             if (valorVenal <= 0) throw new ArgumentException(MensagemValorVenalInvalido);
 
             ValorVenal = valorVenal;
-        }        
+        }
     }
 }

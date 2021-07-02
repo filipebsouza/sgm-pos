@@ -48,6 +48,18 @@ namespace SGM.Apresentacao
                 app.UseSpaStaticFiles();
             }
 
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseMiddleware<JwtMiddleware>();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
+            });
+
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
@@ -60,18 +72,6 @@ namespace SGM.Apresentacao
 
                 // if (env.IsDevelopment())
                 //     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
-            });
-
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.UseMiddleware<JwtMiddleware>();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
             });
         }
     }

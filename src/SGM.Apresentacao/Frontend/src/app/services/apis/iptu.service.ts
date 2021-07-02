@@ -7,12 +7,12 @@ import { BaseApiService } from '../_base/base.api.service';
 
 @Injectable()
 export class IptuService extends BaseApiService<Iptu> {
-    recurso = 'Itpus'
+    recurso = 'Iptus'
     constructor(public http: HttpClient, @Inject('BASE_URL') public baseUrl: string, private _jwtService: JWTTokenService) {
         super(http, baseUrl);
     }
 
-    getPorCpfDoContribuinteEAnoDeReferencia(cpfDoContribuinte: number, anoDeReferencia: number): Observable<void | Iptu> {
+    getPorCpfDoContribuinteEAnoDeReferencia(cpfDoContribuinte: string, anoDeReferencia: number): Observable<void | Iptu> {
         return this.http.get<Iptu>(`${this.baseUrl}/${this.recurso}/${cpfDoContribuinte}/${anoDeReferencia}`);
     }
 }

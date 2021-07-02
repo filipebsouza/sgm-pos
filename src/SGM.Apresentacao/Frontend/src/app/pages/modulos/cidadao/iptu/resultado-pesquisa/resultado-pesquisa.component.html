@@ -1,0 +1,19 @@
+<div class="card">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            Logradouro: {{iptu.logradouro}}
+        </li>
+        <li class="list-group-item">
+            Número: {{iptu.numero}}
+        </li>
+        <li class="list-group-item">
+            Bairro: {{iptu.bairro}}
+        </li>
+        <li *ngIf="iptu.possuiDebitos" class="list-group-item">
+            Saldo devedor: {{iptu.saldoDevedor | currency: 'BRL'}}
+        </li>
+        <li *ngIf="!iptu.possuiDebitos" class="list-group-item">
+            Sem saldo devedor
+        </li>
+    </ul>
+</div>
