@@ -12,7 +12,7 @@ export class IptuService extends BaseApiService<Iptu> {
         super(http, baseUrl);
     }
 
-    getPorContribuinteEAnoDeReferencia(idDoContribuinte: number, anoDeReferencia: number): Observable<void | Iptu> {
-        return this.http.get<Iptu>(`${this.baseUrl}/${this.recurso}/${idDoContribuinte}/${anoDeReferencia}`);
+    getPorCpfDoContribuinteEAnoDeReferencia(cpfDoContribuinte: number, anoDeReferencia: number): Observable<void | Iptu> {
+        return this.http.get<Iptu>(`${this.baseUrl}/${this.recurso}/${cpfDoContribuinte}/${anoDeReferencia}`);
     }
 }

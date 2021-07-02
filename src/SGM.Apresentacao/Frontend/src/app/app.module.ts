@@ -23,7 +23,7 @@ registerLocaleData(localeBr, 'pt');
     ComponentsModule,
     PageModule,
     InterceptorModule,
-    ServiceModule,
+    ServiceModule
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

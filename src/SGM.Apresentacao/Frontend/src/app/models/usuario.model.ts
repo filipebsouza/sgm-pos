@@ -8,4 +8,7 @@ export class Usuario
     senha?: string;
     papeis: Papel[];
     token: string;
+    ehContribuinte: boolean;
+    ehServidor: boolean;
+    ehGestor: boolean;
 }

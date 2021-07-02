@@ -62,23 +62,14 @@ export class JWTTokenService {
                 email: this.decodedToken.unique_name,
                 papeis: this._getRoles(),
                 nome: this.decodedToken.nameid,
-                token: this.getToken()
+                token: this.getToken(),
+                ehContribuinte: this._verificarSeUsuarioEhContribuinte(),
+                ehServidor: this._verificarSeUsuarioEhServidor(),
+                ehGestor: this._verificarSeUsuarioEhGestor()
             };
             return usuario;
         }
 
-        return null;
-    }
-
-    private _getRoles(): Papel[] {
-        if (this.decodedToken && this.decodedToken.role) {
-            if (typeof this.decodedToken.role === 'string') {
-                return [Papel[this.decodedToken.role.toUpperCase()]];
-            } else if (typeof this.decodedToken.role === 'object') {
-                const roles: string[] = this.decodedToken.role;
-                return roles.map(role => Papel[role.toUpperCase()]);
-            }
-        }
         return null;
     }
 
@@ -99,5 +90,29 @@ export class JWTTokenService {
         } else {
             return false;
         }
+    }
+
+    private _getRoles(): Papel[] {
+        if (this.decodedToken && this.decodedToken.role) {
+            if (typeof this.decodedToken.role === 'string') {
+                return [Papel[this.decodedToken.role.toUpperCase()]];
+            } else if (typeof this.decodedToken.role === 'object') {
+                const roles: string[] = this.decodedToken.role;
+                return roles.map(role => Papel[role.toUpperCase()]);
+            }
+        }
+        return null;
+    }
+
+    private _verificarSeUsuarioEhServidor(): boolean {
+        return this._getRoles().some(r => r === Papel.SERVIDOR);
+    }
+
+    private _verificarSeUsuarioEhContribuinte(): boolean {
+        return this._getRoles().some(r => r === Papel.CONTRIBUINTE);
+    }
+
+    private _verificarSeUsuarioEhGestor(): boolean {
+        return this._getRoles().some(r => r === Papel.GESTOR);
     }
 }

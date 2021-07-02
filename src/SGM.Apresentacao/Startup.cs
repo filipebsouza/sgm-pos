@@ -48,6 +48,20 @@ namespace SGM.Apresentacao
                 app.UseSpaStaticFiles();
             }
 
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+
+                spa.Options.SourcePath = "Frontend";
+
+                if (env.IsDevelopment())
+                    spa.UseAngularCliServer(npmScript: "start");
+
+                // if (env.IsDevelopment())
+                //     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+            });
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -58,17 +72,6 @@ namespace SGM.Apresentacao
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-            });
-
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
-                spa.Options.SourcePath = "Frontend";
-
-                if (env.IsDevelopment())
-                    spa.UseAngularCliServer(npmScript: "start");
             });
         }
     }

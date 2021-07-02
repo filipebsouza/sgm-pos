@@ -14,6 +14,11 @@ import { ServicosAoCidadaoComponent } from './modulos/cidadao/servicos-ao-cidada
 import { ComponentsModule } from '../components/components.module';
 import { AtendimentoComponent } from './modulos/cidadao/iptu/atendimento/atendimento.component';
 import { AcessoPublicoComponent } from './modulos/cidadao/iptu/acesso-publico/acesso-publico.component';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { BrowserModule } from '@angular/platform-browser';
+import { IptuService } from '../services/apis/iptu.service';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
     declarations: [
@@ -30,11 +35,16 @@ import { AcessoPublicoComponent } from './modulos/cidadao/iptu/acesso-publico/ac
         ServicosAoCidadaoComponent,
         GeoComponent,
     ],
+    providers: [
+        IptuService
+    ],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        ComponentsModule
+        ComponentsModule,
+        BrowserModule,
+        NgxMaskModule.forRoot()
     ]
 })
 export class PageModule { }
