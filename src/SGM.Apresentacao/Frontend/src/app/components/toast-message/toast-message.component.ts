@@ -24,8 +24,15 @@ export class ToastMessageComponent {
                 this.titulo = toast.titulo;
                 this.dataEHora = toast.dataEHora;
                 this.mensagem = toast.mensagem;
+                this.fecharMensagemAutomaticamente();
             }
         );
+    }
+
+    fecharMensagemAutomaticamente() {
+        setTimeout(() => {
+            this.show = false;
+        }, 5000);
     }
 
     ngOnDestroy() {

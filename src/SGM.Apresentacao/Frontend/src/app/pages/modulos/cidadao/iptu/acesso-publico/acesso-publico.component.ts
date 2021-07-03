@@ -27,7 +27,7 @@ export class AcessoPublicoComponent implements OnInit {
             this._iptuService.get().subscribe((iptu: Iptu) => {
                 this.iptu = iptu;
 
-                if (!this.iptu) {
+                if (this.iptu === null) {
                     this._toastMessageService.criarMensagem({
                         titulo: 'Atenção',
                         mensagem: 'Não há débitos de IPTU para este ano',
