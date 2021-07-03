@@ -11,6 +11,7 @@ namespace SGM.Apresentacao.Controllers
     [Route("[controller]")]
     public class IptusController : ControllerBase
     {
+        private const string MensagemContribuinteNaoEncontrado = "Contribuinte não encontrado";
         private readonly IRepositorioDeIptus _repositorioDeIptus;
 
         public IptusController(IRepositorioDeIptus repositorioDeIptus)
@@ -22,7 +23,13 @@ namespace SGM.Apresentacao.Controllers
         [AuthorizeRoles(PapelDoUsuario.Contribuinte)]
         public ActionResult Get()
         {
+            var usuario = this.ObterUsuarioLogado();
+
+            if (usuario.Pessoa is null) return this.NotFound(MensagemContribuinteNaoEncontrado);
+
             var iptuAnoAtual = _repositorioDeIptus.ObterPor(this.ObterUsuarioLogado().Pessoa, DateTime.Now.Year);
+
+            if (iptuAnoAtual is null) return Ok(null);
 
             return Ok(new IptuHttpDto
             {
@@ -30,7 +37,8 @@ namespace SGM.Apresentacao.Controllers
                 Numero = iptuAnoAtual.Imovel.Numero,
                 Bairro = iptuAnoAtual.Imovel.Bairro,
                 PossuiDebitos = iptuAnoAtual.PossuiDebitos,
-                SaldoDevedor = iptuAnoAtual.SaldoDevedor
+                SaldoDevedor = iptuAnoAtual.SaldoDevedor,
+                AnoDeReferencia = iptuAnoAtual.AnoDeReferencia
             });
         }
 
@@ -40,13 +48,16 @@ namespace SGM.Apresentacao.Controllers
         {
             var iptuAnoAtual = _repositorioDeIptus.ObterPor(cpfDoContribuinte, anoDeReferencia);
 
+            if (iptuAnoAtual is null) return Ok(null);
+
             return Ok(new IptuHttpDto
             {
                 Logradouro = iptuAnoAtual.Imovel.Logradouro,
                 Numero = iptuAnoAtual.Imovel.Numero,
                 Bairro = iptuAnoAtual.Imovel.Bairro,
                 PossuiDebitos = iptuAnoAtual.PossuiDebitos,
-                SaldoDevedor = iptuAnoAtual.SaldoDevedor
+                SaldoDevedor = iptuAnoAtual.SaldoDevedor,
+                AnoDeReferencia = iptuAnoAtual.AnoDeReferencia
             });
         }
     }

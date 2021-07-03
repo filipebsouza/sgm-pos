@@ -54,7 +54,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
           mensagem: 'Erro de evento'
         });
       } else {
-        const titulo = `${error.status} ${error.statusText}`;
+        const titulo = `${error.status}`;
         switch (error.status) {
           case 401:      //login
             this._router.navigateByUrl("/unauthorized");
@@ -68,13 +68,13 @@ export class HttpConfigInterceptor implements HttpInterceptor {
             this._toastMessageService.criarMensagem({
               titulo: titulo,
               dataEHora: dataEHoraDoErro,
-              mensagem: 'Erro na requisição'
+              mensagem: error.error.message
             });
           case 500:
             this._toastMessageService.criarMensagem({
               titulo: titulo,
               dataEHora: dataEHoraDoErro,
-              mensagem: 'Erro interno não tratado'
+              mensagem: error.error.message
             });
         }
       }

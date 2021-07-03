@@ -1,10 +1,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SGM.Dominio.Entidades;
 using SGM.Infra.Segurancas;
 using SGM.Apresentacao.Dtos;
-using SGM.Apresentacao.Helpers;
 using SGM.Dominio.Repositorios;
 
 namespace SGM.Apresentacao.Controllers
@@ -38,14 +36,6 @@ namespace SGM.Apresentacao.Controllers
                 },
                 Token = token
             };
-        }
-
-        [HttpGet]
-        [Route("testar")]
-        [AuthorizeRoles(PapelDoUsuario.Contribuinte, PapelDoUsuario.Servidor)]
-        public ActionResult TestarAutenticacao()
-        {
-            return Ok("DEU CERTO");
         }
     }
 }

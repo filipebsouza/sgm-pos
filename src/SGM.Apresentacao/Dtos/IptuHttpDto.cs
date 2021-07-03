@@ -7,5 +7,6 @@ namespace SGM.Apresentacao.Dtos
         public string Bairro { get; set; }
         public bool PossuiDebitos { get; set; }
         public double SaldoDevedor { get; set; }
+        public int AnoDeReferencia { get; set; }
     }
 }

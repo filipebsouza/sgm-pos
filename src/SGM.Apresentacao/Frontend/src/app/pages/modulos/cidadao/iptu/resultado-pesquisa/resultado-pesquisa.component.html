@@ -9,6 +9,9 @@
         <li class="list-group-item">
             Bairro: {{iptu.bairro}}
         </li>
+        <li class="list-group-item">
+            Ano de referência: {{iptu.anoDeReferencia}}
+        </li>
         <li *ngIf="iptu.possuiDebitos" class="list-group-item">
             Saldo devedor: {{iptu.saldoDevedor | currency: 'BRL'}}
         </li>

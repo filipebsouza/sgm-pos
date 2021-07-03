@@ -12,13 +12,13 @@ import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
 export class AtendimentoComponent implements OnInit {
     iptu: Iptu;
     form: FormGroup;
-    
+
     constructor(
         private _fb: FormBuilder,
         private _toastMessageService: ToastMessageService,
         private _iptuService: IptuService
-        ) { }
-    
+    ) { }
+
     ngOnInit(): void {
         this.construirForm();
     }
@@ -31,11 +31,19 @@ export class AtendimentoComponent implements OnInit {
     }
 
     pesquisar() {
-        if (this.form.valid) {            
+        if (this.form.valid) {
             this._iptuService
                 .getPorCpfDoContribuinteEAnoDeReferencia(this.form.get('cpf').value, +this.form.get('ano').value)
-                .subscribe((i: Iptu) => {
-                    this.iptu = i;
+                .subscribe((iptu: Iptu) => {
+                    this.iptu = iptu;
+
+                    if (!this.iptu) {
+                        this._toastMessageService.criarMensagem({
+                            titulo: 'Atenção',
+                            mensagem: 'Não há débitos de IPTU para este ano',
+                            dataEHora: new Date()
+                        });
+                    }
                 });
         } else {
             this._toastMessageService.criarMensagem({

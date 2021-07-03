@@ -26,9 +26,9 @@
           <div ngbDropdownMenu aria-labelledby="dropdownModulos">
             <button ngbDropdownItem (click)="irPara('modulos/geo')">Georreferenciamento</button>
             <button ngbDropdownItem (click)="irPara('modulos/cidadao')">Serviços ao cidadão</button>
-            <button ngbDropdownItem>Gestão de projetos</button>
-            <button ngbDropdownItem>BI</button>
-            <button ngbDropdownItem>Integrações</button>
+            <button ngbDropdownItem [disabled]="true">Gestão de projetos</button>
+            <button ngbDropdownItem [disabled]="true">BI</button>
+            <button ngbDropdownItem [disabled]="true">Integrações</button>
           </div>
         </div>
 

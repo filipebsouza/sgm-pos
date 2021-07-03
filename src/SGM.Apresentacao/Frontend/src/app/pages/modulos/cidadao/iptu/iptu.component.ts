@@ -12,6 +12,4 @@ export class IptuComponent {
     constructor(private _jwtService: JWTTokenService) {
         this.usuario = this._jwtService.getUsuario();
     }
-
-
 }

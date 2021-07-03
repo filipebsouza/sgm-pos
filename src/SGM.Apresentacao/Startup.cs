@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SGM.IoC;
 using SGM.Apresentacao.Middlewares;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace SGM.Apresentacao
 {
@@ -52,6 +54,14 @@ namespace SGM.Apresentacao
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseMiddleware<JwtMiddleware>();
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerPathFeature>()
+                    .Error;
+                var response = new { error = exception.Message };
+                await context.Response.WriteAsJsonAsync(response);
+            }));
 
             app.UseEndpoints(endpoints =>
             {
@@ -62,16 +72,10 @@ namespace SGM.Apresentacao
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "Frontend";
 
                 if (env.IsDevelopment())
                     spa.UseAngularCliServer(npmScript: "start");
-
-                // if (env.IsDevelopment())
-                //     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
             });
         }
     }

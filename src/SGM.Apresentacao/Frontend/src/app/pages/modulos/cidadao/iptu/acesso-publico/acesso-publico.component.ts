@@ -10,22 +10,30 @@ import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
 })
 export class AcessoPublicoComponent implements OnInit {
     @Input() usuario: Usuario;
-    
+
     iptu: Iptu;
-    
+
     constructor(
         private _iptuService: IptuService,
         private _toastMessageService: ToastMessageService
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         this.pesquisarPorUsuarioLogado();
     }
 
     private pesquisarPorUsuarioLogado() {
-        if (!!this.usuario) {     
-            this._iptuService.get().subscribe((i: Iptu) => {
-                this.iptu = i;
+        if (!!this.usuario) {
+            this._iptuService.get().subscribe((iptu: Iptu) => {
+                this.iptu = iptu;
+
+                if (!this.iptu) {
+                    this._toastMessageService.criarMensagem({
+                        titulo: 'Atenção',
+                        mensagem: 'Não há débitos de IPTU para este ano',
+                        dataEHora: new Date()
+                    });
+                }
             });
         } else {
             this._toastMessageService.criarMensagem({
