@@ -7,8 +7,6 @@ namespace SGM.Dominio.Entidades.Builders
         protected Pessoa _contribuinte;
         protected int _anoDeReferencia;
 
-        public static ImpostoBuilder Novo() => new();
-
         public T ComNome<T>(string nome) where T : ImpostoBuilder
         {
             _nome = nome;

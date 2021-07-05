@@ -1,22 +1,14 @@
 namespace SGM.Dominio.Entidades.Builders
 {
-    public class IptuBuilder : ImpostoBuilder
+    public class IptuBuilder : ImpostoComImovelBuilder
     {
-        private ImovelUrbano _imovelUrbano;
-
-        new public static IptuBuilder Novo() => new();
-
-        public IptuBuilder ComImovelUrbano(ImovelUrbano imovelUrbano)
-        {
-            _imovelUrbano = imovelUrbano;
-            return this;
-        }
+        public static IptuBuilder Novo() => new();
 
         public Iptu Construir()
         {
             return new(_contribuinte,
                        _anoDeReferencia,
-                       _imovelUrbano);
+                       _imovel as ImovelUrbano);
         }
     }
 }

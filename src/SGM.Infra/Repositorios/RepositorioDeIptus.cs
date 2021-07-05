@@ -20,7 +20,7 @@ namespace SGM.Infra.Repositorios
                                        .ComCpf("03227637111")
                                        .Construir()
                 )
-                .ComImovelUrbano(
+                .ComImovel<IptuBuilder>(
                     ImovelUrbanoBuilder.Novo()
                         .ComLogradouro<ImovelUrbanoBuilder>("Rua Principal")
                         .ComNumero<ImovelUrbanoBuilder>(123)
