@@ -1,7 +1,11 @@
+using System;
+using SGM.Utils.ObjectExtensions;
+
 namespace SGM.Dominio.Entidades.Builders
 {
     public class UsuarioBuilder
     {
+        private int _id;
         private string _nome;
         private string _email;
         private string _senha;
@@ -13,6 +17,12 @@ namespace SGM.Dominio.Entidades.Builders
         public UsuarioBuilder ComNome(string nome)
         {
             _nome = nome;
+            return this;
+        }
+
+        public UsuarioBuilder ComId(int id)
+        {
+            _id = id;
             return this;
         }
 
@@ -42,9 +52,13 @@ namespace SGM.Dominio.Entidades.Builders
 
         public Usuario Construir()
         {
-            if (_pessoa is null) return new(_nome, _email, _senha, _papeis);
+            Usuario usuario = _pessoa is null ?
+                new(_nome, _email, _senha, _papeis) :
+                new(_nome, _email, _senha, _pessoa, _papeis);
 
-            return new(_nome, _email, _senha, _pessoa, _papeis);
+            if (_id > 0) usuario.Set(() => usuario.Id, _id);
+
+            return usuario;
         }
     }
 }
