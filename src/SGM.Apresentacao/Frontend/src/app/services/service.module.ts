@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IptuService } from './apis/iptu.service';
+import { ItrService } from './apis/itr.service';
 import { UsuarioService } from './apis/usuario.service';
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { JWTTokenService } from './security/jwt-token.service';
@@ -10,6 +11,7 @@ import { ToastMessageService } from './ui/toast-message.service';
     providers: [
         UsuarioService,
         IptuService,
+        ItrService,
         JWTTokenService,
         LocalStorageService,
         ToastMessageService,

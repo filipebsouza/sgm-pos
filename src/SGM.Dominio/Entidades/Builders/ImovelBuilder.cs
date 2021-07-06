@@ -6,6 +6,7 @@ namespace SGM.Dominio.Entidades.Builders
         protected int _numero;
         protected string _bairro;
         protected int _areaTotal;
+        protected double _valorVenal;
 
         public static ImovelBuilder Novo() => new();
 
@@ -30,6 +31,12 @@ namespace SGM.Dominio.Entidades.Builders
         public T ComAreaTotal<T>(int areaTotal) where T : ImovelBuilder
         {
             _areaTotal = areaTotal;
+            return this as T;
+        }
+
+        public T ComValorVenal<T>(double valorVenal) where T : ImovelBuilder
+        {
+            _valorVenal = valorVenal;
             return this as T;
         }
     }

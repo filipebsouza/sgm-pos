@@ -19,7 +19,7 @@ import { AcessoPublicoComponent as AcessoPublicoItrComponent } from './modulos/c
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { BrowserModule } from '@angular/platform-browser';
 import { IptuService } from '../services/apis/iptu.service';
-import { ResultadoPesquisaComponent } from './modulos/cidadao/iptu/resultado-pesquisa/resultado-pesquisa.component';
+import { ResultadoPesquisaImpostoSobreImovelComponent } from './modulos/cidadao/components/resultado-pesquisa-imposto-sobre-imovel/resultado-pesquisa-imposto-sobre-imovel.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -39,7 +39,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
         SturComponent,
         ServicosAoCidadaoComponent,
         GeoComponent,
-        ResultadoPesquisaComponent
+        ResultadoPesquisaImpostoSobreImovelComponent
     ],
     providers: [
         IptuService

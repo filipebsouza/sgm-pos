@@ -1,1 +1,8 @@
-<h1>Acesso ao publico</h1>
+<div class="row">
+    <h2>Seus débitos:</h2>
+    <div *ngIf="!!itr" class="mt-5 pt-5 col-md-6">
+        <app-cidadao-components-resultado-pesquisa-imposto-sobre-imovel
+            [imposto]="itr">
+        </app-cidadao-components-resultado-pesquisa-imposto-sobre-imovel>
+    </div>    
+</div>

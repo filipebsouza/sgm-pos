@@ -38,7 +38,7 @@ namespace SGM.Dominio.Entidades
         }
 
         public bool HaIncidenciaDeAliquotaZero =>
-            AreaDePreservacaoEhMaisDeCinquentaPorcentoDaPropriedade || (Imovel as ImovelRural).ManejoDeAgriculturaFamiliar;
+            AreaDePreservacaoEhMaisDeCinquentaPorcentoDaPropriedade || (Imovel as ImovelRural)?.ManejoDeAgriculturaFamiliar == true;
 
         public Itr(Pessoa contribuinte, int anoDeReferencia, ImovelRural imovel)
             : base(NOME, SIGLA, contribuinte, anoDeReferencia, imovel)

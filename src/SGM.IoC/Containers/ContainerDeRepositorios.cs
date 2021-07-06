@@ -10,6 +10,7 @@ namespace SGM.IoC.Containers
         {
             services.AddTransient<IRepositorioDeUsuarios, RepositorioDeUsuarios>();
             services.AddTransient<IRepositorioDeIptus, RepositorioDeIptus>();
+            services.AddTransient<IRepositorioDeItrs, RepositorioDeItrs>();
 
             return services;
         }

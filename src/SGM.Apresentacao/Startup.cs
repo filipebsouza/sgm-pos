@@ -59,7 +59,7 @@ namespace SGM.Apresentacao
                 var exception = context.Features
                     .Get<IExceptionHandlerPathFeature>()
                     .Error;
-                var response = new { error = exception.Message };
+                var response = new { message = exception.Message };
                 await context.Response.WriteAsJsonAsync(response);
             }));
 

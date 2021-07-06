@@ -26,12 +26,22 @@ namespace SGM.Infra.Repositorios.Mocks
                                 .Construir(),
                 UsuarioBuilder.Novo()
                                 .ComId(3)
-                                .ComNome("João Ernesto Villalba")
+                                .ComNome(PessoasMock.ObterJoaoErnesto.Nome)
                                 .ComEmail("joao@joao.com.br")
                                 .ComSenha("senha123")
                                 .ComPapeis(PapelDoUsuario.Contribuinte)
                                 .ComPessoa(
                                     PessoasMock.ObterJoaoErnesto
+                                )
+                                .Construir(),
+                UsuarioBuilder.Novo()
+                                .ComId(4)
+                                .ComNome(PessoasMock.ObterAugustaGuilhermina.Nome)
+                                .ComEmail("augusta@augusta.com.br")
+                                .ComSenha("senha123")
+                                .ComPapeis(PapelDoUsuario.Contribuinte)
+                                .ComPessoa(
+                                    PessoasMock.ObterAugustaGuilhermina
                                 )
                                 .Construir()
             };

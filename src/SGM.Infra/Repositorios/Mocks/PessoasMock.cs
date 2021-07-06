@@ -15,6 +15,11 @@ namespace SGM.Infra.Repositorios.Mocks
                                     .ComId(1)
                                     .ComNome<PessoaFisicaBuilder>("João Ernesto Villalba")
                                     .ComCpf("27509579074")
+                                    .Construir(),
+                 PessoaFisicaBuilder.Novo()
+                                    .ComId(2)
+                                    .ComNome<PessoaFisicaBuilder>("Augusta Guilhermina Judite")
+                                    .ComCpf("31571995013")
                                     .Construir()
             };
         }
@@ -23,6 +28,12 @@ namespace SGM.Infra.Repositorios.Mocks
             => Mock.FirstOrDefault(pessoa =>
                 pessoa is PessoaFisica pessoaFisica &&
                 pessoaFisica.Cpf.Valor == "27509579074"
+            );
+
+        public static Pessoa ObterAugustaGuilhermina
+            => Mock.FirstOrDefault(pessoa =>
+                pessoa is PessoaFisica pessoaFisica &&
+                pessoaFisica.Cpf.Valor == "31571995013"
             );
 
         public static IReadOnlyList<Pessoa> Mock { get; }

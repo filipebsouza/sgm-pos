@@ -1,0 +1,22 @@
+<div class="card">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            Logradouro: {{imposto.logradouro}}
+        </li>
+        <li class="list-group-item">
+            Número: {{imposto.numero}}
+        </li>
+        <li class="list-group-item">
+            Bairro: {{imposto.bairro}}
+        </li>
+        <li class="list-group-item">
+            Ano de referência: {{imposto.anoDeReferencia}}
+        </li>
+        <li *ngIf="imposto.possuiDebitos" class="list-group-item">
+            Saldo devedor: {{imposto.saldoDevedor | currency: 'BRL'}}
+        </li>
+        <li *ngIf="!imposto.possuiDebitos" class="list-group-item">
+            Sem saldo devedor
+        </li>
+    </ul>
+</div>

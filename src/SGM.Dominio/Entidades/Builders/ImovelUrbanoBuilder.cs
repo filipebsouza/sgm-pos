@@ -5,7 +5,6 @@ namespace SGM.Dominio.Entidades.Builders
         private int _areaConstruida;
         private bool _possuiAsfalto;
         private bool _possuiEsgoto;
-        private double _valorVenal;
 
         new public static ImovelUrbanoBuilder Novo() => new();
 
@@ -24,12 +23,6 @@ namespace SGM.Dominio.Entidades.Builders
         public ImovelUrbanoBuilder PossuiEsgoto(bool possuiEsgoto)
         {
             _possuiEsgoto = possuiEsgoto;
-            return this;
-        }
-
-        public ImovelUrbanoBuilder ComValorVenal(double valorVenal)
-        {
-            _valorVenal = valorVenal;
             return this;
         }
 

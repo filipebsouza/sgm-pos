@@ -3,7 +3,6 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
 import { Usuario } from '../../models/usuario.model';
-import { LocalStorageService } from '../local-storage/local-storage.service';
 import { JWTTokenService } from '../security/jwt-token.service';
 import { BaseApiService } from '../_base/base.api.service';
 

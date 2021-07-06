@@ -6,8 +6,8 @@ import { JWTTokenService } from '../security/jwt-token.service';
 import { BaseApiService } from '../_base/base.api.service';
 
 @Injectable()
-export class IptuService extends BaseApiService<ImpostoSobreImovel> {
-    recurso = 'Iptus'
+export class ItrService extends BaseApiService<ImpostoSobreImovel> {
+    recurso = 'Itrs'
     constructor(public http: HttpClient, @Inject('BASE_URL') public baseUrl: string) {
         super(http, baseUrl);
     }
