@@ -19,7 +19,7 @@ namespace SGM.Testes.Dominio.Entidades
                         .ComNumero<ImovelUrbanoBuilder>(123)
                         .ComBairro<ImovelUrbanoBuilder>("Vila dos Sonhos")
                         .ComAreaTotal<ImovelUrbanoBuilder>(234)
-                        .ComValorVenal(2580.55)
+                        .ComValorVenal<ImovelUrbanoBuilder>(2580.55)
                         .ComAreaConstruida(78)
                         .Construir())
                     .Construir();

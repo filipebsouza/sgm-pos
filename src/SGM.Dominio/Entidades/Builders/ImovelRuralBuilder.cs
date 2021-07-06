@@ -27,12 +27,19 @@ namespace SGM.Dominio.Entidades.Builders
         }
 
         public ImovelRural Construir()
-            => new(_logradouro,
+        {
+            ImovelRural imovelRural = new(_logradouro,
                        _numero,
                        _bairro,
                        _areaTotal,
                        _areaUtilTotal,
                        _areaDePreservacaoAmbiental,
                        _manejoDeAgriculturaFamiliar);
+
+            if (_valorVenal > 0)
+                imovelRural.AdicionarValorVenal(_valorVenal);
+
+            return imovelRural;
+        }
     }
 }
