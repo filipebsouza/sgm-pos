@@ -16,6 +16,8 @@ namespace SGM.Dominio.Entidades
             : base(nome, sigla, contribuinte, anoDeReferencia)
         {
             ValidarParametros(imovel);
+
+            Imovel = imovel;
         }
 
         private static void ValidarParametros(Imovel imovel)
