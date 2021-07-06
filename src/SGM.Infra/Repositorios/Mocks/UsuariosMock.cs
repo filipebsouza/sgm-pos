@@ -37,6 +37,6 @@ namespace SGM.Infra.Repositorios.Mocks
             };
         }
 
-        public static IReadOnlyList<Usuario> Mock { get; }
+        public static List<Usuario> Mock { get; }
     }
 }

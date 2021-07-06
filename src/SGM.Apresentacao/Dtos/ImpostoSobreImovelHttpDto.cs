@@ -1,6 +1,6 @@
 namespace SGM.Apresentacao.Dtos
 {
-    public class IptuHttpDto
+    public class ImpostoSobreImovelHttpDto
     {
         public string Logradouro { get; set; }
         public int Numero { get; set; }

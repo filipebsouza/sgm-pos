@@ -26,6 +26,6 @@ namespace SGM.Infra.Repositorios.Mocks
             };
         }
 
-        public static IReadOnlyList<Iptu> Mock { get; }
+        public static List<Iptu> Mock { get; }
     }
 }

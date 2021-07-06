@@ -12,8 +12,10 @@ import { ItrComponent } from './modulos/cidadao/itr/itr.component';
 import { SturComponent } from './modulos/cidadao/stur/stur.component';
 import { ServicosAoCidadaoComponent } from './modulos/cidadao/servicos-ao-cidadao/servicos-ao-cidadao.component';
 import { ComponentsModule } from '../components/components.module';
-import { AtendimentoComponent } from './modulos/cidadao/iptu/atendimento/atendimento.component';
-import { AcessoPublicoComponent } from './modulos/cidadao/iptu/acesso-publico/acesso-publico.component';
+import { AtendimentoComponent as AtendimentoIptuComponent } from './modulos/cidadao/iptu/atendimento/atendimento.component';
+import { AtendimentoComponent as AtendimentoItrComponent } from './modulos/cidadao/itr/atendimento/atendimento.component';
+import { AcessoPublicoComponent as AcessoPublicoIptuComponent } from './modulos/cidadao/iptu/acesso-publico/acesso-publico.component';
+import { AcessoPublicoComponent as AcessoPublicoItrComponent } from './modulos/cidadao/itr/acesso-publico/acesso-publico.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { BrowserModule } from '@angular/platform-browser';
 import { IptuService } from '../services/apis/iptu.service';
@@ -29,9 +31,11 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
         ModulosComponent,
         CidadaoComponent,
         IptuComponent,
-        AcessoPublicoComponent,
-        AtendimentoComponent,
+        AcessoPublicoIptuComponent,
+        AtendimentoIptuComponent,
         ItrComponent,
+        AcessoPublicoItrComponent,
+        AtendimentoItrComponent,
         SturComponent,
         ServicosAoCidadaoComponent,
         GeoComponent,

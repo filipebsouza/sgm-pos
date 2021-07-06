@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Iptu } from 'src/app/models/iptu.model';
+import { ImpostoSobreImovel } from 'src/app/models/imposto-sobre-imovel.model';
 import { IptuService } from 'src/app/services/apis/iptu.service';
 import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
 
@@ -10,7 +10,7 @@ import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
     styleUrls: ['./atendimento.component.css']
 })
 export class AtendimentoComponent implements OnInit {
-    iptu: Iptu;
+    iptu: ImpostoSobreImovel;
     form: FormGroup;
 
     constructor(
@@ -34,7 +34,7 @@ export class AtendimentoComponent implements OnInit {
         if (this.form.valid) {
             this._iptuService
                 .getPorCpfDoContribuinteEAnoDeReferencia(this.form.get('cpf').value, +this.form.get('ano').value)
-                .subscribe((iptu: Iptu) => {
+                .subscribe((iptu: ImpostoSobreImovel) => {
                     this.iptu = iptu;
 
                     if (this.iptu === null) {

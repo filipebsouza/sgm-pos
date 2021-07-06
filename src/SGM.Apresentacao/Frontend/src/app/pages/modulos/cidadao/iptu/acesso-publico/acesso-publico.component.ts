@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Iptu } from 'src/app/models/iptu.model';
+import { ImpostoSobreImovel } from 'src/app/models/imposto-sobre-imovel.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import { IptuService } from 'src/app/services/apis/iptu.service';
 import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
@@ -11,7 +11,7 @@ import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
 export class AcessoPublicoComponent implements OnInit {
     @Input() usuario: Usuario;
 
-    iptu: Iptu;
+    iptu: ImpostoSobreImovel;
 
     constructor(
         private _iptuService: IptuService,
@@ -24,7 +24,7 @@ export class AcessoPublicoComponent implements OnInit {
 
     private pesquisarPorUsuarioLogado() {
         if (!!this.usuario) {
-            this._iptuService.get().subscribe((iptu: Iptu) => {
+            this._iptuService.get().subscribe((iptu: ImpostoSobreImovel) => {
                 this.iptu = iptu;
 
                 if (this.iptu === null) {

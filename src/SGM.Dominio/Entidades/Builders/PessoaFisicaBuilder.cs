@@ -26,8 +26,7 @@ namespace SGM.Dominio.Entidades.Builders
         {
             PessoaFisica pessoaFisica = new(_nome, _cpf);
 
-            if (_id > 0)
-                pessoaFisica.Set(() => pessoaFisica.Id, _id);
+            if (_id > 0) pessoaFisica.Set(() => pessoaFisica.Id, _id);
 
             return pessoaFisica;
         }

@@ -1,4 +1,4 @@
-export class Iptu {
+export class ImpostoSobreImovel {
     logradouro: string;
     numero: number;
     bairro: string;

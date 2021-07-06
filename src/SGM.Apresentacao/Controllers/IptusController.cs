@@ -31,7 +31,7 @@ namespace SGM.Apresentacao.Controllers
 
             if (iptuAnoAtual is null) return Ok(null);
 
-            return Ok(new IptuHttpDto
+            return Ok(new ImpostoSobreImovelHttpDto
             {
                 Logradouro = iptuAnoAtual.Imovel.Logradouro,
                 Numero = iptuAnoAtual.Imovel.Numero,
@@ -50,7 +50,7 @@ namespace SGM.Apresentacao.Controllers
 
             if (iptuAnoAtual is null) return Ok(null);
 
-            return Ok(new IptuHttpDto
+            return Ok(new ImpostoSobreImovelHttpDto
             {
                 Logradouro = iptuAnoAtual.Imovel.Logradouro,
                 Numero = iptuAnoAtual.Imovel.Numero,

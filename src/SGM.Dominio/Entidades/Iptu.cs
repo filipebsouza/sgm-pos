@@ -1,5 +1,3 @@
-using System;
-
 namespace SGM.Dominio.Entidades
 {
     public class Iptu : ImpostoSobreImovel

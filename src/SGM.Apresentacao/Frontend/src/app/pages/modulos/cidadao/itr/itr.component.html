@@ -1,1 +1,2 @@
-<h2>Em desenvolvimento...</h2>
+<app-cidado-itr-acesso-publico [usuario]="usuario" *ngIf="usuario.ehContribuinte"></app-cidado-itr-acesso-publico>
+<app-cidado-itr-atendimento *ngIf="usuario.ehServidor"></app-cidado-itr-atendimento>

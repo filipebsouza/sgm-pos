@@ -15,7 +15,7 @@ namespace SGM.Dominio.Entidades
         public const string MensagemPapelInvalido = "Papel de permissão inválido";
         public const string MensagemPessoaInvalida = "Pessoa inválida";
 
-        public int Id { get; }
+        public int Id { get; private set; }
         public string Nome { get; }
         public string Email { get; }
         private string hashDaSenha = "";
