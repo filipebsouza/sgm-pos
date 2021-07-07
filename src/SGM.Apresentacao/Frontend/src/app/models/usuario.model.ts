@@ -1,7 +1,6 @@
 import { Papel } from './papel.model';
 
-export class Usuario
-{
+export class Usuario {
     id?: number;
     nome?: string;
     email: string;

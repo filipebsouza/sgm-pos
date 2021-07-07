@@ -22,14 +22,14 @@ export class CidadaoComponent {
             componente: ItrComponent
         },
         {
-            identificadorDoItem: 'STUR',
-            descricao: 'Acesso ao STUR',
-            componente: SturComponent
-        },
-        {
             identificadorDoItem: 'servicos-cidadao',
             descricao: 'Serviços ao Cidadão',
             componente: ServicosAoCidadaoComponent
+        },
+        {
+            identificadorDoItem: 'STUR',
+            descricao: 'Acesso ao STUR',
+            componente: SturComponent
         }
     ];
 }

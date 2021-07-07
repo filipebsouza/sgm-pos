@@ -2,12 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ImpostoSobreImovel } from 'src/app/models/imposto-sobre-imovel.model';
-import { JWTTokenService } from '../security/jwt-token.service';
 import { BaseApiService } from '../_base/base.api.service';
 
 @Injectable()
 export class ItrService extends BaseApiService<ImpostoSobreImovel> {
-    recurso = 'Itrs'
+    recurso = 'Itrs';
     constructor(public http: HttpClient, @Inject('BASE_URL') public baseUrl: string) {
         super(http, baseUrl);
     }

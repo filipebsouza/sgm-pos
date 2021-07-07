@@ -10,5 +10,3 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
-
-// export { renderModule, renderModuleFactory } from '@angular/platform-server';

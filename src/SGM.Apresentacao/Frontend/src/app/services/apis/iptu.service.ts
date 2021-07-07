@@ -7,7 +7,7 @@ import { BaseApiService } from '../_base/base.api.service';
 
 @Injectable()
 export class IptuService extends BaseApiService<ImpostoSobreImovel> {
-    recurso = 'Iptus'
+    recurso = 'Iptus';
     constructor(public http: HttpClient, @Inject('BASE_URL') public baseUrl: string) {
         super(http, baseUrl);
     }

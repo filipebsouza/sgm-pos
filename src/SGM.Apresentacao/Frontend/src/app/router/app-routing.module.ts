@@ -14,9 +14,12 @@ const ROUTES: Routes =
         { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'login', component: LoginComponent },
         { path: 'unauthorized', component: UnauthorizedComponent },
-        { path: 'modulos', component: ModulosComponent, canActivate: [AuthorizeGuard], data: { papeis: [Papel.CONTRIBUINTE, Papel.GESTOR, Papel.SERVIDOR] } },
-        { path: 'modulos/cidadao', component: CidadaoComponent, canActivate: [AuthorizeGuard], data: { papeis: [Papel.CONTRIBUINTE, Papel.GESTOR, Papel.SERVIDOR] } },
-        { path: 'modulos/geo', component: GeoComponent, canActivate: [AuthorizeGuard], data: { papeis: [Papel.GESTOR, Papel.SERVIDOR] } }
+        { path: 'modulos', component: ModulosComponent, canActivate: [AuthorizeGuard],
+            data: { papeis: [Papel.CONTRIBUINTE, Papel.GESTOR, Papel.SERVIDOR] } },
+        { path: 'modulos/cidadao', component: CidadaoComponent, canActivate: [AuthorizeGuard],
+            data: { papeis: [Papel.CONTRIBUINTE, Papel.GESTOR, Papel.SERVIDOR] } },
+        { path: 'modulos/geo', component: GeoComponent, canActivate: [AuthorizeGuard],
+            data: { papeis: [Papel.GESTOR, Papel.SERVIDOR] } }
     ];
 @NgModule({
     imports: [RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'corrected' })],

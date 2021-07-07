@@ -26,24 +26,10 @@ import {
     chat, coneStriped, diagram2, film, graphUp, hammer, houseDoor
 } from 'ngx-bootstrap-icons';
 
-//heartFill - COVID-19
-//clipboardData - Dados epidemiológicos
-//book - Educação
-//tv - Aulas
-//briefcaseFill - Trabalho e emprego
-//calendarDateFill - Calendário escolar
-//chat - Ouvidoria
-//coneStriped - Trânsito e transporte
-//diagram2 - Estrutura organizacional
-//film - Cultura e lazer
-//graphUp - Indicadores públicos
-//hammer - Obras
-//houseDoor - Moradia popular
-
 const icons = {
     heartFill, clipboardData, book, tv, briefcaseFill, calendarDateFill,
     chat, coneStriped, diagram2, film, graphUp, hammer, houseDoor
-}
+};
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({

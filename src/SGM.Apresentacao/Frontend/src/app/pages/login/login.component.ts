@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
     constructor(private _fb: FormBuilder, private _usuarioService: UsuarioService,
         private _toastMessageService: ToastMessageService, private _jwtService: JWTTokenService
-    ) { 
+    ) {
         this.construirForm();
     }
 

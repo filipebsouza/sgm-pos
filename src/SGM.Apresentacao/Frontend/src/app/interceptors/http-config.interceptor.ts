@@ -11,7 +11,8 @@ import { ToastMessageService } from '../services/ui/toast-message.service';
 export class HttpConfigInterceptor implements HttpInterceptor {
   private totalRequests = 0;
 
-  constructor(private _jwtService: JWTTokenService, private _router: Router, private _toastMessageService: ToastMessageService, private _loaderService: LoaderService) { }
+  constructor(private _jwtService: JWTTokenService, private _router: Router,
+    private _toastMessageService: ToastMessageService, private _loaderService: LoaderService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.totalRequests++;
@@ -44,7 +45,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
       this._loaderService.setLoading(false);
     }
 
-    let handled: boolean = false;
+    let handled = false;
     const dataEHoraDoErro = new Date();
     if (error instanceof HttpErrorResponse) {
       if (error.error instanceof ErrorEvent) {
@@ -56,12 +57,12 @@ export class HttpConfigInterceptor implements HttpInterceptor {
       } else {
         const titulo = `${error.status}`;
         switch (error.status) {
-          case 401:      //login
-            this._router.navigateByUrl("/unauthorized");
+          case 401:      // login
+            this._router.navigateByUrl('/unauthorized');
             handled = true;
             break;
-          case 403:     //forbidden
-            this._router.navigateByUrl("/unauthorized");
+          case 403:     // forbidden
+            this._router.navigateByUrl('/unauthorized');
             handled = true;
             break;
           case 404:
@@ -70,12 +71,14 @@ export class HttpConfigInterceptor implements HttpInterceptor {
               dataEHora: dataEHoraDoErro,
               mensagem: error.error.message
             });
+            break;
           case 500:
             this._toastMessageService.criarMensagem({
               titulo: titulo,
               dataEHora: dataEHoraDoErro,
               mensagem: error.error.message
             });
+            break;
         }
       }
     }

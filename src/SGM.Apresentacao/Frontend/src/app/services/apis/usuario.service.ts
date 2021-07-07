@@ -8,7 +8,7 @@ import { BaseApiService } from '../_base/base.api.service';
 
 @Injectable()
 export class UsuarioService extends BaseApiService<Usuario> {
-    recurso = 'Usuarios'
+    recurso = 'Usuarios';
     constructor(public http: HttpClient, @Inject('BASE_URL') public baseUrl: string, private _jwtService: JWTTokenService) {
         super(http, baseUrl);
     }

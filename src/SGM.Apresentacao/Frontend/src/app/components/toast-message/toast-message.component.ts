@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ToastMessage } from 'src/app/models/toast-message.model';
 import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
@@ -8,7 +8,7 @@ import { ToastMessageService } from 'src/app/services/ui/toast-message.service';
     templateUrl: './toast-message.component.html',
     styleUrls: ['./toast-message.component.css']
 })
-export class ToastMessageComponent {
+export class ToastMessageComponent implements OnInit, OnDestroy {
     show = false;
     titulo: string;
     dataEHora: Date;

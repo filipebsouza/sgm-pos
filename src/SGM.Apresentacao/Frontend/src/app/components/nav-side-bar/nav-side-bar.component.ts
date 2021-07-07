@@ -10,7 +10,7 @@ export class NavSideBarComponent implements OnInit {
     @Input() itens: SideBarItem[] = [];
 
     componenteAtual: Type<any>;
-    abaAtiva: string = '';
+    abaAtiva = '';
 
     ngOnInit(): void {
         this.abaAtiva = this.itens[0].identificadorDoItem;
@@ -20,7 +20,7 @@ export class NavSideBarComponent implements OnInit {
 
     onNavChange(changeEvent: NgbNavChangeEvent) {
         const indiceDoComponente = changeEvent.nextId;
-        const item = this.itens.find(item => item.identificadorDoItem === indiceDoComponente);
+        const item = this.itens.find(i => i.identificadorDoItem === indiceDoComponente);
         this.componenteAtual = item.componente;
     }
 }
