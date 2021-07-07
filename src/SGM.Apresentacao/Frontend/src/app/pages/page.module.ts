@@ -20,7 +20,30 @@ import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { BrowserModule } from '@angular/platform-browser';
 import { IptuService } from '../services/apis/iptu.service';
 import { ResultadoPesquisaImpostoSobreImovelComponent } from './modulos/cidadao/components/resultado-pesquisa-imposto-sobre-imovel/resultado-pesquisa-imposto-sobre-imovel.component';
+import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
+import {
+    heartFill, clipboardData, book, tv, briefcaseFill, calendarDateFill,
+    chat, coneStriped, diagram2, film, graphUp, hammer, houseDoor
+} from 'ngx-bootstrap-icons';
 
+//heartFill - COVID-19
+//clipboardData - Dados epidemiológicos
+//book - Educação
+//tv - Aulas
+//briefcaseFill - Trabalho e emprego
+//calendarDateFill - Calendário escolar
+//chat - Ouvidoria
+//coneStriped - Trânsito e transporte
+//diagram2 - Estrutura organizacional
+//film - Cultura e lazer
+//graphUp - Indicadores públicos
+//hammer - Obras
+//houseDoor - Moradia popular
+
+const icons = {
+    heartFill, clipboardData, book, tv, briefcaseFill, calendarDateFill,
+    chat, coneStriped, diagram2, film, graphUp, hammer, houseDoor
+}
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
@@ -50,7 +73,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
         ReactiveFormsModule,
         ComponentsModule,
         BrowserModule,
-        NgxMaskModule.forRoot()
+        NgxMaskModule.forRoot(),
+        NgxBootstrapIconsModule.pick(icons)
     ]
 })
 export class PageModule { }
