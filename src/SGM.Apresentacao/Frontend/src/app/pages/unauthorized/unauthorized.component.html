@@ -1,7 +1,8 @@
 <div class="container">
     <h1>403 - Acesso não autorizado.</h1>
-    <p>Para acessar essa página efetue o login no sistema.</p>
-    <div class="row justify-content-start">
+    <p *ngIf="!usuario">Para acessar essa página efetue o login no sistema.</p>
+    <p *ngIf="usuario">Você não possui acesso a esta página.</p>
+    <div *ngIf="!usuario" class="row justify-content-start">
         <div class="col-3">
             <button class="btn btn-lg btn-info btn-block" type="button" (click)="irParaTelaDeLogin()">Logar</button>
         </div>
