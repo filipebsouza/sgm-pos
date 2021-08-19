@@ -21,14 +21,14 @@ namespace SGM.Infra.Repositorios.Mocks
                                 .ComId(2)
                                 .ComNome("Maria da Silva")
                                 .ComEmail("maria@bomdestino.governo.br")
-                                .ComSenha("senha123")
+                                .ComSenha("gy67#da")
                                 .ComPapeis(PapelDoUsuario.Servidor)
                                 .Construir(),
                 UsuarioBuilder.Novo()
                                 .ComId(3)
                                 .ComNome(PessoasMock.ObterJoaoErnesto.Nome)
                                 .ComEmail("joao@joao.com.br")
-                                .ComSenha("senha123")
+                                .ComSenha("h7$dgY")
                                 .ComPapeis(PapelDoUsuario.Contribuinte)
                                 .ComPessoa(
                                     PessoasMock.ObterJoaoErnesto
